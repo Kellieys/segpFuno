@@ -1,0 +1,149 @@
+{% extends 'funo/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="wrapper">
+       
+        {% include 'funo/sidebar.html' %}
+       
+        <div class="main-panel">
+            
+            {% include 'funo/navbar.html' %}
+
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="aboutbanner" style="background:url('/static/funo/img/aboutbanner.jpeg');">
+                            <h1 style="color:white; text-shadow: 5px 5px 6px #000000;">The Future is Now.</h4>
+                            <b><i><h4 style="color:white; font-weight:400; text-shadow: 3px 3px 6px #000000;">Predict future agriculture prices.
+                            </h4></i></b>
+                        </div>
+                        <div class="card-body">
+                             <div class="row">
+
+                    <div class="col-md-6 col-sm-6">
+                         <div class="about-info">
+                              <div class="section-title">
+                                   <h2>Let us introduce</h2>
+                                   <span class="line-bar">...</span>
+                              </div>
+                              <p>Our Story</p>
+                              <p>Our vision is to provide different kind of services that will forecast the prices of the agriculture commodity. With the technique of Machine Learning, we aim for a high accurary product that</p>
+                         </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                         <div class="about-info skill-thumb">
+
+                              <strong>Forecasting agri prices</strong>
+                                   <span class="pull-right">100%</span>
+                                        <div class="progress">
+                                             <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                        </div>
+
+                              <strong>Market prices</strong>
+                                   <span class="pull-right">95%</span>
+                                        <div class="progress">
+                                             <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 95%;"></div>
+                                        </div>
+
+                              <strong>Trending Crops</strong>
+                                   <span class="pull-right">90%</span>
+                                        <div class="progress">
+                                             <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 95%;"></div>
+                                        </div>
+
+                              <strong>Weather Forecasting</strong>
+                                   <span class="pull-right">90%</span>
+                                        <div class="progress">
+                                             <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
+                                        </div>
+
+                         </div>
+                    </div>
+                    
+               </div>
+
+               <section id="blog" data-stellar-background-ratio="0.5">
+               <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                         <div class="section-title">
+                              <h2>Problems affected the agriculture prices</h2>
+                              <span class="line-bar">...</span>
+                         </div>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12">
+                         <!-- BLOG THUMB -->
+                         <div class="media blog-thumb">
+                              <div class="media-object media-left">
+                                   <a href="https://www.economicshelp.org/blog/4977/economics/problems-of-agriculture-market-failure/"><img src="{% static 'funo/img/volatile.jpg' %}" class="img-responsive" alt=""></a>
+                              </div>
+                              <div class="media-body blog-info">
+                                   <small><i class="fa fa-clock-o"></i> December 22, 2018</small>
+                                   <h3><a href="https://www.economicshelp.org/blog/4977/economics/problems-of-agriculture-market-failure/">Market Failure.</a></h3>
+                                   <p>Prices in agricultural markets are often much more volatile than other industries. This is because:...</p>
+                                   <a href="https://www.economicshelp.org/blog/4977/economics/problems-of-agriculture-market-failure/" class="btn btn-info btn-fill pull-left">Read article</a>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12">
+                         <!-- BLOG THUMB -->
+                         <div class="media blog-thumb">
+                              <div class="media-object media-left">
+                                   <a href="https://www.mprnews.org/story/2019/10/17/the-stress-is-unbearable-at-times-farmers-wait-hope-as-weather-delays-harvest"><img src="{% static 'funo/img/soggy.jpg' %}" class="img-responsive" alt=""></a>
+                              </div>
+                              <div class="media-body blog-info">
+                                   <small><i class="fa fa-clock-o"></i> October 17, 2019</small>
+                                   <h3><a href="https://www.mprnews.org/story/2019/10/17/the-stress-is-unbearable-at-times-farmers-wait-hope-as-weather-delays-harvest">Harvest Delayed.</a></h3>
+                                   <p>Saturated soil is delaying the fall harvest for many farmers.</p>
+                                   <a href="https://www.mprnews.org/story/2019/10/17/the-stress-is-unbearable-at-times-farmers-wait-hope-as-weather-delays-harvest" class="btn btn-info btn-fill pull-left">Read article</a>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12">
+                         <!-- BLOG THUMB -->
+                         <div class="media blog-thumb">
+                              <div class="media-object media-left">
+                                   <a href="https://www.theguardian.com/environment/2019/jun/23/america-corn-belt-farmers-markets-prices"><img src="{% static 'funo/img/weatherdelay.jpg' %}" class="img-responsive" alt=""></a>
+                              </div>
+                              <div class="media-body blog-info">
+                                   <small><i class="fa fa-clock-o"></i> Jun 23, 2019</small>
+                                   <h3><a href="https://www.theguardian.com/environment/2019/jun/23/america-corn-belt-farmers-markets-prices">Planting Delayed.</a></h3>
+                                   <p>Cold, rainy weather has meant severe planting delays for farmers from Ohio to Nebraska.</p>
+                                   <a href="https://www.theguardian.com/environment/2019/jun/23/america-corn-belt-farmers-markets-prices" class="btn btn-info btn-fill pull-left">Read article</a>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12">
+                         <!-- BLOG THUMB -->
+                         <div class="media blog-thumb">
+                              <div class="media-object media-left">
+                                   <a href="https://www.agriculture.com/news/business/10-predictions-for-farmers-in-2019"><img src="{% static 'funo/img/predictions.jpg' %}" class="img-responsive" alt=""></a>
+                              </div>
+                              <div class="media-body blog-info">
+                                   <small><i class="fa fa-clock-o"></i> November 21, 2018</small>
+                                   <h3><a href="https://www.agriculture.com/news/business/10-predictions-for-farmers-in-2019">10 predictions for farmers in 2019</a></h3>
+                                   <p>THIS COULD BE ANOTHER ROUGH YEAR – OR IT COULD BE THE TURNAROUND WE NEED. LET’S GET OUT THE CRYSTAL BALL.</p>
+                                   <a href="https://www.agriculture.com/news/business/10-predictions-for-farmers-in-2019" class="btn btn-info btn-fill pull-left">Read article</a>
+                              </div>
+                         </div>
+                    </div>
+                    
+               </div>
+                
+            </div>
+            
+            {% include 'funo/footer.html' %}
+        
+        </div>
+    </div>
+
+
+{% endblock %}

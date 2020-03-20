@@ -1,0 +1,81 @@
+{% extends 'funo/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="wrapper">
+       
+        {% include 'funo/sidebar.html' %}
+       
+        <div class="main-panel">
+
+         {% include 'funo/navbar.html' %}
+
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row" style="padding:20px;">
+                        <div class="col-md-3">
+                            <div class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="http://example.com" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="no-icon">Select Commodity</span>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <a class="dropdown-item" href="#">Kang Kung</a>
+                                            <a class="dropdown-item" href="#">Egg</a>
+                                            <a class="dropdown-item" href="#">Banana</a>
+                                            <a class="dropdown-item" href="#">Chicken</a>
+                                            <div class="divider"></div>
+                                            <a class="dropdown-item" href="#">Separated link</a>
+                                        </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="http://example.com" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="no-icon">Select Duration</span>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <a class="dropdown-item" href="#">1 Year</a>
+                                            <a class="dropdown-item" href="#">5 Years</a>
+                                            <a class="dropdown-item" href="#">10 Years</a>
+                                            <div class="divider"></div>
+                                            <a class="dropdown-item" href="#">Separated link</a>
+                                        </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="nav-item dropdown">
+									<input class="nav-link" id="DropdownSearch" type="date" id="date" name="date">
+								</div>
+                  			</div>
+                                        
+                            <div class="col-md-3">
+                                <a href="#"><button class="nav-link nav-item" id="submitbutton" type="button"><i class="nc-icon nc-zoom-split"></i>&nbsp; &nbsp; Search</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card" style="padding:50px;">
+                                <div class="container">
+                                      <div>
+                                        <canvas id="myChart"></canvas>                                      
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                  
+                    {% include 'funo/chatbox.html' %}
+
+                </div>
+               
+                {% include 'funo/footer.html' %}
+
+            </div>
+
+        </div>
+
+{% endblock %}
