@@ -1,11 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
 from django.contrib import messages
-
 from .models import *
 from .forms import CreateUserForm
 from django.shortcuts import render
@@ -89,7 +86,8 @@ def data_Predict(request,*args,**kwargs):
         duration = my_thing['duration']
         forecast= my_thing['forecast']
         current= my_thing['current']
-        theForecastValue=[]
+        title=my_thing['title']        
+        print(current)
 
         date=past_data['Date'].iloc[-current:]
         date=pd.to_datetime(date).tolist()
@@ -105,6 +103,8 @@ def data_Predict(request,*args,**kwargs):
             for i in range (0, len(date)):
                 date[i] = date[i].split(' ')[0]
             data={
+                'forecast':forecast,
+                'title':title,
                 'labels':','.join(date),
                 'default': ','.join(past_price)
             }
@@ -112,7 +112,7 @@ def data_Predict(request,*args,**kwargs):
             date2=past_data["Date"].iloc[-1]
             date2=pd.Series(pd.date_range(date2, periods=forecast, freq='7D'))
             date2=date2[1:].tolist()   
-            date=date + date2 
+            date=date + date2
         
             past_data.set_index(['Date'], inplace= True)
             fill_missing(past_data.values)
@@ -133,13 +133,14 @@ def data_Predict(request,*args,**kwargs):
             future_price = regressor.predict(feedin_price_scaled)
             future_price = sc.inverse_transform(future_price)
             future_price = future_price.reshape(-1 ,1)
+        
             future_price=future_price.round(2).tolist()
-            
-                
 
-            
-            past_price= past_price.tolist() + future_price #so I get total_price and date(complete)
-            
+            past_price= past_price.tolist() + future_price #so I get total_price and date(complete) #future price is 52
+            if forecast!=52:
+                for i in range(0,(52-forecast)):
+                    past_price.pop()
+
             past_price = list(map(str, past_price))
 
             for i in range (1, len(past_price)):
@@ -147,6 +148,8 @@ def data_Predict(request,*args,**kwargs):
 
 
             data={
+                'forecast':forecast,
+                'title':title,
                 'labels':','.join(date),
                 'default': ','.join(past_price)
             }
@@ -160,6 +163,7 @@ def dashboard(request):
     durationVar=0
     forecast=52
     current=260
+    title="Poultry Field Price Forecast"
     
     if request.method=='GET':
             commodity=request.GET.get('commodity')
@@ -168,22 +172,27 @@ def dashboard(request):
             if commodity=='poultry':
                 dataFile='rawData/PoultryData.csv'
                 modelFile='rawData/lstm-chicken.h5'
+                title="Poultry Field Price Forecast"
             
             elif commodity=='banana':
                 dataFile='rawData/PoultryData.csv'
                 modelFile='rawData/lstm-chicken.h5'
+                title="Banana Field Price Forecast"
             
             elif commodity=='kangkung':
                 dataFile='rawData/PoultryData.csv'
                 modelFile='rawData/lstm-chicken.h5'
+                title="Kangkung Field Price Forecast"
             
             elif commodity=='egg':
                 dataFile='rawData/PoultryData.csv'
                 modelFile='rawData/lstm-chicken.h5'
+                title="Egg Field Price Forecast"
             
             elif commodity=="":
                 dataFile='rawData/PoultryData.csv'
                 modelFile='rawData/lstm-chicken.h5'
+                title="Poultry Field Price Forecast"
             
 
             if duration=="sixmonth":
@@ -217,17 +226,17 @@ def dashboard(request):
                     current=durationVar-forecast
 
             elif datatype=="forecast6month":
-                if durationVar<26:
+                if durationVar==26:
                     forecast=26
-                    current=forecast
+                    current=1
                 else:
                     forecast=26
                     current=durationVar-forecast
 
-            elif datatype=="forecast1year":
+            elif datatype=="forecast1year":                    
                 if durationVar<52:
                     forecast=52
-                    current=forecast
+                    current=1
                 else:
                     forecast=52
                     current=durationVar-forecast
@@ -247,7 +256,8 @@ def dashboard(request):
                 'modelFile':modelFile,
                 'duration':durationVar,
                 'forecast':forecast,
-                'current':current
+                'current':current,
+                'title':title
             }
             request.session['data']=data
     return render(request, 'funo/dashboard.html')
