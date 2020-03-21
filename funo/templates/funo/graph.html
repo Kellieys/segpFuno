@@ -1,0 +1,140 @@
+
+
+
+{% load static %}
+
+
+  
+    <link rel="stylesheet" type="text/css" href="{% static 'funo/css/loader.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js'></script>
+    
+
+    <script>
+                    $(document).ready(function(){
+                        var endpoint = 'model/'
+                        var defaultData = [];
+                        var labels = [];
+                        var data1=[];
+                        var data2=[];
+                        var i;
+                        $.ajax({
+                            method: "GET",
+                            url: endpoint,
+                            success: function(data){
+                                labels = data.labels.split(",")
+                                defaultData = data.default.split(",")
+                                for (i=0;i<labels.length-53;i++){
+                                    data1[i]=defaultData[i];
+                                    data2[i]=null;
+
+                                }
+                                data2[labels.length-54]=defaultData[labels.length-54];
+                                for (i=labels.length-53;i<labels.length;i++){
+                                    data1[i]=null;
+                                    data2[i]=defaultData[i];
+                                }
+                                console.log(labels[labels.length-54])
+                                setChart()
+
+                            },
+                            error: function(error_data){
+                                console.log("error")
+                                console.log(error_data)
+                            },
+                            complete: function(){
+                                $('#loader').hide();
+                            }
+                        });
+
+                        function setChart(){
+                            var ctx = document.getElementById("myChart");
+                            var ctx = document.getElementById("myChart");
+                            var ctx2 = document.getElementById("myChart2");
+                            var myChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: 'Price',
+                                    fill:false,
+                                    data: data1,
+                                    pointRadius:1,
+                                    backgroundColor: 'rgb(54,102,255)',
+                                    borderColor: 'rgb(54,102,255)',
+                                    borderWidth: 1,
+                                    pointHoverRadius:5
+                                },
+                                {
+                                    label: 'Forecast Price',
+                                    fill:false,
+                                    data: data2,
+                                    pointRadius:1,
+                                    backgroundColor: 'rgb(54,255,0)',
+                                    borderColor: 'rgb(54,255,0)',
+                                    borderWidth: 1,
+                                    pointHoverRadius:5
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero:true,
+                                            
+                                            scaleLabel: {
+                                                display: true,
+                                                labelString: 'Price (RM)'
+                                            }
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            autoSkip:true,
+                                            maxTicksLimit:20,
+                                            scaleLabel: {
+                                                display: true,
+                                                labelString: 'Date'
+                                            }
+                                        }
+                                    }]
+                                },
+                               title:{
+                                   display:true,
+                                   text:"Poultry Field Price Forecast (1 Year)"
+                               },
+                                hover: {
+                                    mode: 'index'
+                                }
+
+                            }
+                        });
+                        }
+                    });  
+                </script>
+
+
+
+{% comment %} {%block graph_content%}
+<div id='loader'>
+    <div class="button">
+         <div class="loader"></div>
+    </div>
+</div>
+<canvas id="myChart" style="display:block; height: 266px; width: 532px;" width="500" height="150"></canvas>
+                   
+
+<form action="" method="GET">
+    <label for="commodity">Comodity</label>
+        <select id="commodity" name="commodity">
+            <option name="option" value="poultry">Poultry</option>
+            <option name="option" value="vegetable">Vegetable</option>
+        </select>
+    <input type="submit" value="Submit">
+</form>
+
+{%end block%} {% endcomment %}
