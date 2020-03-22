@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import *
-from .forms import CreateUserForm
+from .forms import CreateUserForm, SupportForm
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from keras import backend
@@ -315,7 +315,18 @@ def user(request):
 
 @login_required(login_url='login')
 def support(request):
-    return render(request, 'funo/support.html')
+    form = SupportForm()
+
+    if request.method == 'POST':
+            form = SupportForm(request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Thanks for reaching us!' )
+                return redirect('support')
+
+    context = {'form':form}
+
+    return render(request, 'funo/support.html', context)
 
 
 @login_required(login_url='login')
