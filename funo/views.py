@@ -21,7 +21,8 @@ from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from django.conf import settings
 from django.views.generic import View
-from keras import backend as K 
+from keras import backend as K
+from pickle import load
 
 User = get_user_model()
 def registerPage(request):
@@ -80,9 +81,11 @@ def fill_missing(past_data):
                     past_data[row, col] = past_data[row - 1, col] + ((missing_next - past_data[row - 1, col]) / (i+1))
                     
 def data_Predict(request,*args,**kwargs):
+        K.clear_session()
         my_thing = request.session.get('data', None)
         past_data = pd.read_csv(my_thing['dataFile'])
         regressor = load_model(my_thing['modelFile'])
+        scaler = load(open(my_thing['scalerFile'], 'rb'))
         duration = my_thing['duration']
         forecast= my_thing['forecast']
         current= my_thing['current']
@@ -126,12 +129,11 @@ def data_Predict(request,*args,**kwargs):
             feedin_price.append(past_price[(len(past_price)-52):])
             feedin_price = np.array(feedin_price)
 
-            sc = MinMaxScaler(feature_range = (0, 1))
-            feedin_price_scaled = sc.fit_transform(feedin_price.reshape(-1, 1))
+            feedin_price_scaled = scaler.transform(feedin_price.reshape(-1, 1))
             feedin_price_scaled = feedin_price_scaled.reshape(1, feedin_price_scaled.shape[0], 1)
             
             future_price = regressor.predict(feedin_price_scaled)
-            future_price = sc.inverse_transform(future_price)
+            future_price = scaler.inverse_transform(future_price)
             future_price = future_price.reshape(-1 ,1)
         
             future_price=future_price.round(2).tolist()
@@ -158,41 +160,78 @@ def data_Predict(request,*args,**kwargs):
 
 @login_required(login_url='login')
 def dashboard(request):
-    dataFile='rawData/PoultryData.csv'
-    modelFile='rawData/lstm-chicken.h5'
+    dataFile='rawData/poultry/chicken/chicken.csv'
+    modelFile='rawData/poultry/chicken/chicken.h5'
+    scalerFile = 'rawData/poultry/chicken/chicken.pkl'
     durationVar=0
     forecast=52
     current=260
-    title="Poultry Field Price Forecast"
+    title="Chicken Field Price Forecast"
     
     if request.method=='GET':
             commodity=request.GET.get('commodity')
             duration=request.GET.get('duration')
             datatype=request.GET.get('datatype')
-            if commodity=='poultry':
-                dataFile='rawData/PoultryData.csv'
-                modelFile='rawData/lstm-chicken.h5'
-                title="Poultry Field Price Forecast"
             
-            elif commodity=='banana':
-                dataFile='rawData/PoultryData.csv'
-                modelFile='rawData/lstm-chicken.h5'
-                title="Banana Field Price Forecast"
+            if commodity=='coconut':
+                dataFile='rawData/coconut/coconut.csv'
+                modelFile='rawData/coconut/coconut.h5'
+                scalerFile = 'rawData/coconut/coconut.pkl'
+                title="Coconut Field Price Forecast"
             
             elif commodity=='kangkung':
-                dataFile='rawData/PoultryData.csv'
-                modelFile='rawData/lstm-chicken.h5'
-                title="Kangkung Field Price Forecast"
+                dataFile='rawData/vegetables/kangkung/kangkung.csv'
+                modelFile='rawData/vegetables/kangkung/kangkung.h5'
+                scalerFile = 'rawData/vegetables/kangkung/kangkung.pkl'
+                title="Water Spinach Field Price Forecast"
+
+            elif commodity=='sawiHijau':
+                dataFile='rawData/vegetables/sawiHijau/sawiHijau.csv'
+                modelFile='rawData/vegetables/sawiHijau/sawiHijau.h5'
+                scalerFile = 'rawData/vegetables/sawiHijau/sawiHijau.pkl'
+                title="Choy Sum Field Price Forecast"
             
-            elif commodity=='egg':
-                dataFile='rawData/PoultryData.csv'
-                modelFile='rawData/lstm-chicken.h5'
-                title="Egg Field Price Forecast"
+            elif commodity=='tomato':
+                dataFile='rawData/fruits/tomato/tomato.csv'
+                modelFile='rawData/fruits/tomato/tomato.h5'
+                scalerFile = 'rawData/fruits/tomato/tomato.pkl'
+                title="Tomato Field Price Forecast"
+
+            elif commodity=='chilli':
+                dataFile='rawData/fruits/chilli/chilli.csv'
+                modelFile='rawData/fruits/chilli/chilli.h5'
+                scalerFile = 'rawData/fruits/chilli/chilli.pkl'
+                title="Red Chilli Field Price Forecast"
+
+            elif commodity=='chicken':
+                dataFile='rawData/poultry/chicken/chicken.csv'
+                modelFile='rawData/poultry/chicken/chicken.h5'
+                scalerFile = 'rawData/poultry/chicken/chicken.pkl'
+                title="Chicken Field Price Forecast"
+
+            elif commodity=='eggA':
+                dataFile='rawData/poultry/eggA/eggA.csv'
+                modelFile='rawData/poultry/eggA/eggA.h5'
+                scalerFile = 'rawData/poultry/eggA/eggA.pkl'
+                title="Egg (Grade A) Field Price Forecast"
+
+            elif commodity=='eggB':
+                dataFile='rawData/poultry/eggB/eggB.csv'
+                modelFile='rawData/poultry/eggB/eggB.h5'
+                scalerFile = 'rawData/poultry/eggB/eggB.pkl'
+                title="Egg (Grade B) Field Price Forecast"
+
+            elif commodity=='eggC':
+                dataFile='rawData/poultry/eggC/eggC.csv'
+                modelFile='rawData/poultry/eggC/eggC.h5'
+                scalerFile = 'rawData/poultry/eggC/eggC.pkl'
+                title="Egg (Grade C) Field Price Forecast"
             
             elif commodity=="":
-                dataFile='rawData/PoultryData.csv'
-                modelFile='rawData/lstm-chicken.h5'
-                title="Poultry Field Price Forecast"
+                dataFile='rawData/poultry/chicken/chicken.csv'
+                modelFile='rawData/poultry/chicken/chicken.h5'
+                scalerFile = 'rawData/poultry/chicken/chicken.pkl'
+                title="Chicken Field Price Forecast"
             
 
             if duration=="sixmonth":
@@ -254,6 +293,7 @@ def dashboard(request):
             data={
                 'dataFile':dataFile,
                 'modelFile':modelFile,
+                'scalerFile':scalerFile,
                 'duration':durationVar,
                 'forecast':forecast,
                 'current':current,
