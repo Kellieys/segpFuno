@@ -5,6 +5,8 @@ from django import forms
 #import django default user model
 from django.contrib.auth.models import User 
 
+from .models import Support
+
 class CreateUserForm(UserCreationForm):
 	class Meta: 
 		model = User
