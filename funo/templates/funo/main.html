@@ -52,12 +52,14 @@
 <script type="text/javascript">
             $(function() {
           var INDEX = 0; 
+          generate_message("Hi, how can I help you?", 'user');
           $("#chat-submit").click(function(e) {
             e.preventDefault();
             var msg = $("#chat-input").val(); 
             if(msg.trim() == ''){
               return false;
-            }
+            } 
+            
             generate_message(msg, 'self');
             var buttons = [
                 {
@@ -70,7 +72,7 @@
                 }
               ];
             setTimeout(function() {      
-              generate_message(msg, 'user');  
+              generate_message("We will be here to assist you soon. For more information,please visit our website! ", 'user');  
             }, 1000)
             
           })
