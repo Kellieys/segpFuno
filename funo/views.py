@@ -100,6 +100,7 @@ def data_Predict(request,*args,**kwargs):
             fill_missing(past_data.values)
             past_data = past_data.round(2)
             past_price = past_data.loc[:]['Harga Ladang'].round(2)
+            past_price = past_data['Harga Ladang'].iloc[-current:].round(2)
             past_price = list(map(str, past_price))
 
             date = list(map(str, date))
@@ -113,7 +114,7 @@ def data_Predict(request,*args,**kwargs):
             }
         else:
             date2=past_data["Date"].iloc[-1]
-            date2=pd.Series(pd.date_range(date2, periods=forecast, freq='7D'))
+            date2=pd.Series(pd.date_range(date2, periods=forecast+1, freq='7D'))
             date2=date2[1:].tolist()   
             date=date + date2
         
@@ -137,7 +138,9 @@ def data_Predict(request,*args,**kwargs):
             future_price = future_price.reshape(-1 ,1)
         
             future_price=future_price.round(2).tolist()
-
+            func = lambda x: round(x,2)
+            future_price = [list(map(func, i)) for i in future_price]
+            past_price = past_data['Harga Ladang'].iloc[-current:].round(2)
             past_price= past_price.tolist() + future_price #so I get total_price and date(complete) #future price is 52
             if forecast!=52:
                 for i in range(0,(52-forecast)):
@@ -155,6 +158,8 @@ def data_Predict(request,*args,**kwargs):
                 'labels':','.join(date),
                 'default': ','.join(past_price)
             }
+        print(len(date))
+        print(len(past_price))
         K.clear_session()
         return JsonResponse(data)
 
