@@ -24,58 +24,65 @@
                             <form method="POST">
                                 {% csrf_token %}
                                  <div class="row contact-form">
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="row input-container">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="styled-input wide">
                                                         {{form.name}}
                                                         <label>Name</label> 
                                                     </div>
                                                 </div>
+                                        </div>
+                                        <div class="row">
                                                 <div class="col-md-6 col-sm-12">
                                                     <div class="styled-input">
                                                         {{form.email}}
                                                         <label>Email</label> 
                                                     </div>
                                                 </div>
+                                            
                                                 <div class="col-md-6 col-sm-12">
                                                     <div class="styled-input">
                                                         {{form.phone}}
                                                         <label>Phone Number</label> 
                                                     </div>
                                                 </div>
+                                        </div>
+
+                                        <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="styled-input wide">
                                                         {{form.message}}
                                                         <label>Message</label>
                                                     </div>
                                                 </div>
+                                        </div>
+                                        <div class="row text-center">
                                                 <div class="col-md-12">
-                                                    <button type="submit" class="btn btn-info btn-fill pull-right">Send Message</button>
+                                                    <button type="submit" class="btn btn-info btn-fill">Send Message</button>
                                                 </div>
 
                                                 {% for message in messages %}
-                                                 <p id="messages">{{message}}</p>
+                                                 <p id="messages" class="message-out">{{message}}</p>
                                                 {% endfor %}
                                         </div>
                                     </div>
                             </form>
+                            <div class="col-md-6 col-sm-12" style="padding:40px;">
+                                <div class="map-responsive">
+                                 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15938.193309118753!2d101.874613!3d2.945194!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xca94557719d2191!2sUniversity%20of%20Nottingham%20Malaysia!5e0!3m2!1sen!2smy!4v1584901222772!5m2!1sen!2smy" width="400" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>                                </div>
                                 </div>
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12">
-                            <div class="map-responsive">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.5483287185307!2d101.87242401442514!3d2.945193597854939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cdce0fd89c5829%3A0xca94557719d2191!2sUniversity%20of%20Nottingham%20Malaysia!5e0!3m2!1sen!2smy!4v1582874202773!5m2!1sen!2smy" width="800" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                             </div>
-                        </div>
-                    </div>
+                        
                </div>
                     <!--  End Modal -->
                 </div>
             </div>
             
-          {% include 'funo/footer.html' %}
 
         </div>
+        {% include 'funo/footer.html' %}
+
     </div>
 
 {% endblock%}

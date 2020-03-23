@@ -16,9 +16,9 @@
                 <div class="container-fluid">
                 <form method='GET'>
                     <div class="row" style="padding:20px;">
-                        <div class="col-md-2.5">
+                        <div class="col-md-3">
                             <div class="nav-item dropdown" >
-                                        <select class="nav-link dropdown-toggle" name="commodity" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" >
+                                        <select class="nav-link dropdown-toggle form-control" name="commodity" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" >
                                             
                                         
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -38,10 +38,10 @@
                                         </div></select>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                         
                             <div class="nav-item dropdown">
-                                        <select class="nav-link dropdown-toggle"name="duration" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <select class="nav-link dropdown-toggle form-control"name="duration" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <option class="dropdown-item"  name="option"  value="">Select View</option>
@@ -54,9 +54,9 @@
                                         </div></select>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="nav-item dropdown">
-                                    <select class="nav-link dropdown-toggle"name="datatype" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <select class="nav-link dropdown-toggle form-control"name="datatype" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <option class="dropdown-item"  name="option"  value="">Select Data Type</option>
@@ -76,17 +76,15 @@
                             </div>
                         </div>
                     </div> </form>
+                    <div class="card" style="padding: 20px; height: 500px;">
                     <div class="row">
                         <div class="col-md-12">
-                                      <div>
                                         <div id='loader'>
-                                            <div class="button">
-                                                <div class="loader"></div>
-                                            </div>
+                                                <div class="loader" style="margin:auto;"></div>
                                         </div> 
                                         <canvas id="myChart" style="display:block; height: 266px; width: 532px;"></canvas>
-                            </div>
                         </div>
+                    </div>
                     </div>
                   
                     
