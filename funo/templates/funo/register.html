@@ -37,7 +37,7 @@
 
             <div class="row contact-form">
               <div class="col-md-12 col-sm-12">                      
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                   {% csrf_token %}
 
                   <div class="col-md-12">
@@ -46,6 +46,14 @@
                       <label>Username</label>
                     </div>
                   </div>
+
+                <div class="col-md-12">
+                    <div class="styled-input styled-input-wide wide">
+                      {{form.company}}
+                      <label>Company</label>
+                    </div>
+                  </div>
+
 
                   <div class="col-md-12">
                     <div class="styled-input styled-input-wide wide">

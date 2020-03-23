@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import *
-from .forms import CreateUserForm, SupportForm
+from .forms import CreateUserForm, SupportForm,UpdateProfileForm
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from keras import backend
@@ -36,6 +36,8 @@ def registerPage(request):
             if form.is_valid():
                 form.save()
                 user = form.cleaned_data.get('username')
+                password = form.cleaned_data.get('password1')
+                company = form.cleaned_data.get('company')
                 messages.success(request, 'Account was created for ' + user )
                 return redirect('login')
 
@@ -310,7 +312,30 @@ def dashboard(request):
 
 @login_required(login_url='login')
 def user(request):
-    return render(request, 'funo/user.html')
+    if request.method == 'POST':
+            print("HEHE")
+            form = UpdateProfileForm(request.POST,instance=request.user.profile)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Profile Updated!' )
+                return redirect('user')
+            else:
+                print(form.errors)
+            context={
+                'user':user,
+                'name':request.user.get_username(),
+                'form':form
+            }
+    
+    else:
+        form = UpdateProfileForm(instance=request.user.profile)
+        context={
+                'user':user,
+                'name':request.user.get_username(),                
+                'form':form
+            }    
+    
+    return render(request, 'funo/user.html',context)
 
 
 @login_required(login_url='login')
