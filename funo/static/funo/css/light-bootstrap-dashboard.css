@@ -343,6 +343,7 @@ body>.navbar-collapse .sidebar-wrapper {
     width: 260px;
     z-index: 4;
     padding-bottom: 100px;
+    
 }
 
 .sidebar .sidebar-background,
@@ -572,7 +573,7 @@ body>.navbar-collapse:before {
 body>.navbar-collapse:after {
     background: #315950;
     background: -moz-linear-gradient(top, #315950 0%, #315950 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #315950), color-stop(100%, #943bea));
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #315950), color-stop(100%, #315950));
     background: -webkit-linear-gradient(top, #315950 0%, #315950 100%);
     background: -o-linear-gradient(top, #315950 0%, #315950 100%);
     background: -ms-linear-gradient(top, #315950 0%, #315950 100%);
@@ -589,83 +590,6 @@ body>.navbar-collapse.has-image:after {
     opacity: .77;
 }
 
-.sidebar[data-color="black"]:after,
-body>.navbar-collapse[data-color="black"]:after {
-    background: #777777;
-    background: -moz-linear-gradient(top, #777777 0%, #777777 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #777777), color-stop(100%, #777777));
-    background: -webkit-linear-gradient(top, #777777 0%, #777777 100%);
-    background: -o-linear-gradient(top, #777777 0%, #777777 100%);
-    background: -ms-linear-gradient(top, #777777 0%, #777777 100%);
-    background: linear-gradient(to bottom, #777777 0%, #777777 100%);
-    background-size: 150% 150%;
-}
-
-.sidebar[data-color="blue"]:after,
-body>.navbar-collapse[data-color="blue"]:after {
-    background: #1F77D0;
-    background: -moz-linear-gradient(top, #1F77D0 0%, #533ce1 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1F77D0), color-stop(100%, #533ce1));
-    background: -webkit-linear-gradient(top, #1F77D0 0%, #533ce1 100%);
-    background: -o-linear-gradient(top, #1F77D0 0%, #533ce1 100%);
-    background: -ms-linear-gradient(top, #1F77D0 0%, #533ce1 100%);
-    background: linear-gradient(to bottom, #1F77D0 0%, #533ce1 100%);
-    background-size: 150% 150%;
-}
-
-.sidebar[data-color="azure"]:after,
-body>.navbar-collapse[data-color="azure"]:after {
-    background: #315950;
-    background: -moz-linear-gradient(top, #1DC7EA 0%, #4091ff 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1DC7EA), color-stop(100%, #4091ff));
-    background: -webkit-linear-gradient(top, #1DC7EA 0%, #4091ff 100%);
-    background: -o-linear-gradient(top, #1DC7EA 0%, #4091ff 100%);
-    background: -ms-linear-gradient(top, #1DC7EA 0%, #4091ff 100%);
-    background: linear-gradient(to bottom, #1DC7EA 0%, #4091ff 100%);
-    background-size: 150% 150%;
-}
-
-.sidebar[data-color="green"]:after,
-body>.navbar-collapse[data-color="green"]:after {
-    background: #315950;
-}
-
-.sidebar[data-color="orange"]:after,
-body>.navbar-collapse[data-color="orange"]:after {
-    background: #FFA534;
-    background: -moz-linear-gradient(top, #FFA534 0%, #ff5221 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFA534), color-stop(100%, #ff5221));
-    background: -webkit-linear-gradient(top, #FFA534 0%, #ff5221 100%);
-    background: -o-linear-gradient(top, #FFA534 0%, #ff5221 100%);
-    background: -ms-linear-gradient(top, #FFA534 0%, #ff5221 100%);
-    background: linear-gradient(to bottom, #FFA534 0%, #ff5221 100%);
-    background-size: 150% 150%;
-}
-
-.sidebar[data-color="red"]:after,
-body>.navbar-collapse[data-color="red"]:after {
-    background: #FB404B;
-    background: -moz-linear-gradient(top, #FB404B 0%, #bb0502 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FB404B), color-stop(100%, #bb0502));
-    background: -webkit-linear-gradient(top, #FB404B 0%, #bb0502 100%);
-    background: -o-linear-gradient(top, #FB404B 0%, #bb0502 100%);
-    background: -ms-linear-gradient(top, #FB404B 0%, #bb0502 100%);
-    background: linear-gradient(to bottom, #FB404B 0%, #bb0502 100%);
-    background-size: 150% 150%;
-}
-
-.sidebar[data-color="purple"]:after,
-body>.navbar-collapse[data-color="purple"]:after {
-    background: #9368E9;
-    background: -moz-linear-gradient(top, #9368E9 0%, #943bea 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9368E9), color-stop(100%, #943bea));
-    background: -webkit-linear-gradient(top, #9368E9 0%, #943bea 100%);
-    background: -o-linear-gradient(top, #9368E9 0%, #943bea 100%);
-    background: -ms-linear-gradient(top, #9368E9 0%, #943bea 100%);
-    background: linear-gradient(to bottom, #9368E9 0%, #943bea 100%);
-    background-size: 150% 150%;
-}
-
 .main-panel {
     background: rgba(203, 203, 210, 0.15);
     position: relative;
@@ -676,6 +600,8 @@ body>.navbar-collapse[data-color="purple"]:after {
 
 .main-panel>.content {
     padding: 30px 30px;
+    padding-bottom: 2.5rem;
+    min-height: 100%;
 }
 
 .main-panel>.footer {
@@ -2317,6 +2243,10 @@ fieldset[disabled] .form-control {
 
 .footer {
     background-color: #FFFFFF;
+    margin-top:auto;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem; 
 }
 
 .footer .footer-menu {
@@ -4053,6 +3983,7 @@ Copyright (c) 2015 Daniel Eden
     .wrapper {
         left: 0;
         background-color: white;
+        min-height:100%;
     }
     .navbar .container {
         left: 15px;
@@ -5531,3 +5462,9 @@ License - nucleoapp.com/license/
   }
 
 
+  html, body{ height:100%; margin:0; }
+  body{ 
+    display:flex; 
+    flex-direction:column; 
+  }
+  
