@@ -20,73 +20,77 @@
 
 <body>
 <div class="row">
-    <div class="col-md-4" style="background-image: url('/static/funo/img/bg-01.jpg'); height:700px;">
-      <a href="{% url 'dashboard' %}"><img src="{% static 'funo/img/funowhite.png' %}" style="width:250px; padding:50px;"></a>
-    </div>
+  <div class="col-md-4" style="background-image: url('/static/funo/img/bg-01.jpg'); height:auto; min-height:900px;">
+    <a href="{% url 'dashboard' %}"><img src="{% static 'funo/img/funowhite.png' %}" style="width:250px; padding:50px;"></a>
+  </div>
 
-    <div class="col-md-8" style="background-color: #F8F8F8; float:right;">
-        <div class="form">
-          <h2 style="text-align: center; font-weight: 900;">Log In</h2>
+  <div class="col-md-8" style="background-color: #F8F8F8;">
+    <div class="form">
+      <h2 style="text-align: center; font-weight: 900;">Log In</h2>
 
-            <div id="login">   
-              <h3 style="text-align: center;">Welcome Back!</h3>
+      <div id="login">   
+        <h3 style="text-align: center;">Welcome Back!</h3>
 
-                {% for message in messages %}
-                <p id="messages" class="message-out">{{message}}</p>
-                {% endfor %}
-                <div class="row contact-form">
-                  <div class="col-md-12 col-sm-12">          
-                    <form method="POST">
+        {% for message in messages %}
+        <p id="messages" class="message-out">{{message}}</p>
+        {% endfor %}
 
-                      {% csrf_token %}
+        <div class="row contact-form">
+          <div class="col-md-12 col-sm-12">          
+            <form method="POST">
 
-                      <div class="col-md-12">
-                        <div class="styled-input styled-input-wide wide">
-                          <input type="text" name="username">
-                          <label>Username</label>
-                        </div>
-                      </div>
+            {% csrf_token %}
 
-                      <div class="col-md-12">
-                        <div class="styled-input styled-input-wide wide">
-                          <input type="password" name="password" >
-                          <label>Password<span class="req">*</span></label>
-                        </div> 
-                      </div>
+            <div class="col-md-12">
+              <div class="styled-input styled-input-wide wide">
+                <input type="text" name="username">
+                <label>Username</label>
+              </div>
+            </div>
 
-                      <p style="padding:0 15px 50px 15px;"><a style="float:left;" href="{% url 'register' %}">Need an Account?</a><a data-toggle="modal" data-target="#myModal" style="float:right;" href="#">Forgot Password?</a></p>
-                      <button type="submit" class="button button-block">Log In</button>
+            <div class="col-md-12">
+              <div class="styled-input styled-input-wide wide">
+                <input type="password" name="password" >
+                <label>Password<span class="req">*</span></label>
+              </div> 
+            </div>
+
+            <p style="padding:0 15px 50px 15px;"><a style="float:left;" href="{% url 'register' %}">Need an Account?</a><a data-toggle="modal" data-target="#myModal" style="float:right;" href="#">Forgot Password?</a></p>
+            <button type="submit" class="button button-block">Log In</button>
+
+            </form>
  
-                      <!-- Trigger the modal with a button -->
+            <!-- Trigger the modal with a button -->
 
-                      <!-- Modal -->
-                      <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog modal-sm">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h4 class="modal-title">Reset Password</h4>
-                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-                            <div class="modal-body">
-                              <p>Please enter your registered e-mail address to reset password.</p>
-                                <div class="styled-input styled-input-wide wide">
-                                  <input type="text">
-                                  <label>E-mail address</label>
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                              
-                    </form>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Reset Password</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+
+                  <div class="modal-body">
+                    <p>Please enter your registered e-mail address to reset password.</p>
+                      <div class="styled-input styled-input-wide wide">
+                        <input type="text">
+                        <label>E-mail address</label>
+                      </div>
                   </div>
                 </div>
-
+              </div>
             </div>
-                          
-                        
+                              
           </div>
         </div>
+
       </div>
+                          
+                        
+    </div>
+  </div>
+</div>
 
             
 
