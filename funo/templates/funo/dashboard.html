@@ -6,7 +6,59 @@
     {% include 'funo/graph.html'%}
     <div class="wrapper">
        
-        {% include 'funo/sidebar.html' %}
+        <div class="sidebar" style="background:url({% static 'funo/img/bg-01.jpg' %});">
+            <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+        
+        Tip 2: you can also add an image using data-image tag
+        -->
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="/" class="simple-text">
+                        <img src="{% static 'funo/img/funowhite.png' %}" width=80>
+                    </a>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'dashboard' %}">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'user' %}">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'support' %}">
+                            <i class="nc-icon nc-atom"></i>
+                            <p>Support</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./maps.html">
+                            <i class="nc-icon nc-explore-2"></i>
+                            <p>Weather Forecast</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'aboutus' %}">
+                            <i class="nc-icon nc-grid-45"></i>
+                            <p>About Us</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{%url 'subs'%}">
+                            <i class="nc-icon nc-email-85"></i>
+                            <p>Subscription</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
        
         <div class="main-panel">
 
@@ -22,7 +74,7 @@
                                             
                                         
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <option class="dropdown-item"  name="option"  value="">Select commodity</option>
+                                            <option class="dropdown-item"  name="option"  value="">Select Commodity</option>
                                             <option class="dropdown-item"  name="option"  value="kangkung">Water Spinach</option>
                                             <option class="dropdown-item"  name="option"  value="sawiHijau">Choy Sum</option>
                                             <option class="dropdown-item" name="option"  value="tomato">Tomato</option>
@@ -44,7 +96,7 @@
                                         <select class="nav-link dropdown-toggle form-control"name="duration" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <option class="dropdown-item"  name="option"  value="">Select View</option>
+                                            <option class="dropdown-item"  name="option"  value="">Select Duration</option>
                                             <option class="dropdown-item"  name="option"  value="sixmonth">6 Months</option>
                                             <option class="dropdown-item"  name="option"  value="oneyear">1 Year</option>
                                             <option class="dropdown-item"  name="option"  value="threeyear">3 Year</option>
