@@ -307,7 +307,10 @@ def dashboard(request):
                 'title':title
             }
             request.session['data']=data
-    return render(request, 'funo/dashboard.html')
+
+    context = {'page':'Dashboard'}
+
+    return render(request, 'funo/dashboard.html',context)
 
 
 @login_required(login_url='login')
@@ -324,7 +327,8 @@ def user(request):
             context={
                 'user':user,
                 'name':request.user.get_username(),
-                'form':form
+                'form':form,
+                'page':'User Profile'
             }
     
     else:
@@ -332,7 +336,8 @@ def user(request):
         context={
                 'user':user,
                 'name':request.user.get_username(),                
-                'form':form
+                'form':form,
+                'page':'User Profile'   
             }    
     
     return render(request, 'funo/user.html',context)
@@ -349,18 +354,31 @@ def support(request):
                 messages.success(request, 'Thanks for reaching us!' )
                 return redirect('support')
 
-    context = {'form':form}
+    context = {'form':form,'page':'Contact Us'}
 
     return render(request, 'funo/support.html', context)
+
+@login_required(login_url='login')
+def weather(request):
+
+    context = {'page':'Weather Forecast'}
+
+    return render(request, 'funo/weather.html', context)
 
 
 @login_required(login_url='login')
 def aboutus(request):
-    return render(request, 'funo/aboutus.html')
+
+    context = {'page':'About Us'}
+
+    return render(request, 'funo/aboutus.html', context)
 
 
 @login_required(login_url='login')
 def subscription(request):
-    return render(request, 'funo/subscription.html')
+
+    context = {'page':'Subscription'}
+
+    return render(request, 'funo/subscription.html', context)
 
 
