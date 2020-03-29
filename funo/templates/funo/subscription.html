@@ -6,7 +6,58 @@
 
     <div class="wrapper">
      
-        {% include 'funo/sidebar.html' %}
+        <div class="sidebar" style="background:url({% static 'funo/img/bg-01.jpg' %});">
+            <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+        
+        Tip 2: you can also add an image using data-image tag
+        -->
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="/" class="simple-text">
+                        <img src="{% static 'funo/img/funowhite.png' %}" width=80>
+                    </a>
+                </div>
+                <ul class="nav">
+                    <li>
+                        <a class="nav-link" href="{% url 'dashboard' %}">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'user' %}">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'support' %}">
+                            <i class="nc-icon nc-atom"></i>
+                            <p>Support</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'weather' %}">
+                            <i class="nc-icon nc-explore-2"></i>
+                            <p>Weather Forecast</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'aboutus' %}">
+                            <i class="nc-icon nc-grid-45"></i>
+                            <p>About Us</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active"> 
+                        <a class="nav-link" href="{%url 'subs'%}">
+                            <i class="nc-icon nc-email-85"></i>
+                            <p>Subscription</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
       
         <div class="main-panel">
             
@@ -129,7 +180,9 @@
                                                 <div class="form-group">
                                                     <p class="text-muted text-sm mb-0">Card Number</p>
                                                     <div class="row px-3"> <input type="text" name="card-num" placeholder="0000 0000 0000 0000" size="18" id="cr_no" minlength="19" maxlength="19">
-                                                        <p class="mb-0 ml-3">/</p> <img class="image ml-1" src="https://i.imgur.com/WIAP9Ku.jpg">
+                                                        <i class="fa fa-cc-visa fa-2x"></i>
+                                                        <p style="font-size: 14px; padding: 8px; color:transparent">&nbsp; / &nbsp;</p>
+                                                        <i class="fa fa-cc-mastercard fa-2x"></i>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

@@ -1,6 +1,6 @@
 {% load static %}
 
-<div class="sidebar" data-color="green" data-image="{% static 'funo/img/bg-01.jpg' %}">
+<div class="sidebar" style="background:url({% static 'funo/img/bg-01.jpg' %});">
     <!--
 Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -8,7 +8,7 @@ Tip 2: you can also add an image using data-image tag
 -->
     <div class="sidebar-wrapper">
         <div class="logo">
-            <a href="#" class="simple-text">
+            <a href="/" class="simple-text">
                 <img src="{% static 'funo/img/funowhite.png' %}" width=80>
             </a>
         </div>
@@ -33,8 +33,8 @@ Tip 2: you can also add an image using data-image tag
             </li>
             <li>
                 <a class="nav-link" href="./maps.html">
-                    <i class="nc-icon nc-pin-3"></i>
-                    <p>Maps</p>
+                    <i class="nc-icon nc-explore-2"></i>
+                    <p>Weather Forecast</p>
                 </a>
             </li>
             <li>

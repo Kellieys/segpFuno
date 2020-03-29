@@ -453,7 +453,7 @@ textarea.input100 {
 .form {
   padding: 20px;
   max-width:600px;
-  margin:100px auto;
+  margin:15% auto;
   border: 1px solid #d3d3d3;
   border-radius: 10px;
   box-shadow:0 4px 10px 4px #d3d3d3;
@@ -576,9 +576,9 @@ textarea {
   outline:none;
   border-radius:0px;
   padding:10px 0;
-  font-size:1.5rem;
+  font-size:16px;
   text-transform:uppercase;
-  letter-spacing:.1em;
+  letter-spacing:0.5rem;
   background-color:#315950;
   color:white;
   transition:all.5s ease;
@@ -588,7 +588,7 @@ textarea {
 
 .button-block {
   display:block;
-  width:70%;
+  width:50%;
 }
 
 .forgot {
@@ -705,18 +705,17 @@ ul.checkedlist li:before {
 }
 
 /*////////Contact*/
-.contact-form input:focus ~ label, textarea:focus ~ label, input:valid ~ label, textarea:valid ~ label {
-    font-size: 0.75em;
-    color: #000000;
-    top: -25px;
-    -webkit-transition: all 0.225s ease;
-    transition: all 0.225s ease;
-}
 
 .styled-input {
     margin: 1rem 0;
     position: relative;
     border-radius: 4px;
+}
+
+.styled-input-wide {
+  margin: 2rem 0;
+  position: relative;
+  border-radius: 4px;
 }
 
 @media only screen and (max-width: 768px){
@@ -727,7 +726,7 @@ ul.checkedlist li:before {
 
 
 .styled-input label {
-    color: #838383;
+    color: #808080;
     padding: 0px 10px 10px 10px;
     position: absolute;
     top: 10px;
@@ -735,6 +734,10 @@ ul.checkedlist li:before {
     -webkit-transition: all 0.25s ease;
     transition: all 0.25s ease;
     pointer-events: none;
+    font-size: 0.75em;
+    top: -25px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
 }
 
 .styled-input.wide { 
@@ -746,9 +749,8 @@ textarea {
     padding: 15px;
     border: 0;
     width: 100%;
-    font-size: 1rem;
     background-color: #EEEEEE;
-    color: #000000;
+    color: #696969;
     border-radius: 4px;
 }
 
@@ -994,3 +996,28 @@ input[type=checkbox]:checked + label {
       clear: both;
       margin-bottom: 70px;
   }
+
+.message-out{
+  text-align: center;
+  padding:10px;
+}
+
+
+.modal {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) { 
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}

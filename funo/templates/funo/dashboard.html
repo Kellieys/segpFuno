@@ -3,75 +3,146 @@
 {% load static %}
 
 {% block content %}
-
+    {% include 'funo/graph.html'%}
     <div class="wrapper">
        
-        {% include 'funo/sidebar.html' %}
+        <div class="sidebar" style="background:url({% static 'funo/img/bg-01.jpg' %});">
+            <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+        
+        Tip 2: you can also add an image using data-image tag
+        -->
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="/" class="simple-text">
+                        <img src="{% static 'funo/img/funowhite.png' %}" width=80>
+                    </a>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'dashboard' %}">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'user' %}">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'support' %}">
+                            <i class="nc-icon nc-atom"></i>
+                            <p>Support</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'weather' %}">
+                            <i class="nc-icon nc-explore-2"></i>
+                            <p>Weather Forecast</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'aboutus' %}">
+                            <i class="nc-icon nc-grid-45"></i>
+                            <p>About Us</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{%url 'subs'%}">
+                            <i class="nc-icon nc-email-85"></i>
+                            <p>Subscription</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
        
         <div class="main-panel">
 
-         {% include 'funo/navbar.html' %}
+         {% include 'funo/navbar.html' with page=page %}
 
             <div class="content">
                 <div class="container-fluid">
+                <form method='GET'>
                     <div class="row" style="padding:20px;">
                         <div class="col-md-3">
-                            <div class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="http://example.com" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span class="no-icon">Select Commodity</span>
-                                        </a>
+                            <div class="nav-item dropdown" >
+                                        <select class="nav-link dropdown-toggle form-control" name="commodity" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" >
+                                            
+                                        
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="#">Kang Kung</a>
-                                            <a class="dropdown-item" href="#">Egg</a>
-                                            <a class="dropdown-item" href="#">Banana</a>
-                                            <a class="dropdown-item" href="#">Chicken</a>
-                                            <div class="divider"></div>
-                                            <a class="dropdown-item" href="#">Separated link</a>
-                                        </div>
+                                            <option class="dropdown-item"  name="option"  value="">Select Commodity</option>
+                                            <option class="dropdown-item"  name="option"  value="kangkung">Water Spinach</option>
+                                            <option class="dropdown-item"  name="option"  value="sawiHijau">Choy Sum</option>
+                                            <option class="dropdown-item" name="option"  value="tomato">Tomato</option>
+                                            <option class="dropdown-item" name="option"  value="chilli">Red Chilli</option>
+                                            <option class="dropdown-item"  name="option" value="chicken">Chicken</option>
+                                            <option class="dropdown-item" name="option"  value="eggA">Egg (Grade A)</option>
+                                            <option class="dropdown-item" name="option"  value="eggB">Egg (Grade B)</option>
+                                            <option class="dropdown-item" name="option"  value="eggC">Egg (Grade C)</option>
+                                            <option class="dropdown-item" name="option"  value="coconut">Coconut</option>
+                                            
+                             
+                                           
+                                        </div></select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                        
+                            <div class="nav-item dropdown">
+                                        <select class="nav-link dropdown-toggle form-control"name="duration" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <option class="dropdown-item"  name="option"  value="">Select Duration</option>
+                                            <option class="dropdown-item"  name="option"  value="sixmonth">6 Months</option>
+                                            <option class="dropdown-item"  name="option"  value="oneyear">1 Year</option>
+                                            <option class="dropdown-item"  name="option"  value="threeyear">3 Year</option>
+                                            <option class="dropdown-item"  name="option"  value="fiveyear">5 Year</option>
+                                            <option class="dropdown-item"  name="option"  value="tenyear">10 Year</option>
+
+                                        </div></select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="http://example.com" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span class="no-icon">Select Duration</span>
-                                        </a>
+                                    <select class="nav-link dropdown-toggle form-control"name="datatype" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="#">1 Year</a>
-                                            <a class="dropdown-item" href="#">5 Years</a>
-                                            <a class="dropdown-item" href="#">10 Years</a>
-                                            <div class="divider"></div>
-                                            <a class="dropdown-item" href="#">Separated link</a>
-                                        </div>
-                            </div>
+                                            <option class="dropdown-item"  name="option"  value="">Select Data Type</option>
+                                            <option class="dropdown-item"  name="option"  value="pastdata">Past Data</option>
+                                            <option class="dropdown-item"  name="option"  value="forecast3month">Forecast Data (3 Months)</option>
+                                            <option class="dropdown-item"  name="option"  value="forecast6month">Forecast Data (6 Months)</option>
+                                            <option class="dropdown-item"  name="option"  value="forecast1year">Forecast Data (1 Year)</option>
+                                            
+                                        </div></select>
+                            </div>                        
                         </div>
-                        <div class="col-md-3">
-                            <div class="nav-item dropdown">
-									<input class="nav-link" id="DropdownSearch" type="date" id="date" name="date">
-								</div>
-                  			</div>
+                            
                                         
                             <div class="col-md-3">
-                                <a href="#"><button class="nav-link nav-item" id="submitbutton" type="button"><i class="nc-icon nc-zoom-split"></i>&nbsp; &nbsp; Search</button></a>
+                                <a ><button class="nav-link nav-item" id="submitbutton" type="submit"><i class="nc-icon nc-zoom-split"></i>&nbsp; &nbsp; Search</button></a>
+                                
                             </div>
                         </div>
-                    </div>
+                    </div> </form>
+                    <div class="card" style="padding: 20px; height: 100%;">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card" style="padding:50px;">
-                                <div class="container">
-                                      <div>
-                                        <canvas id="myChart"></canvas>                                      
-                                    </div>
-                                </div>
-
-                            </div>
+                                        <div id='loader'>
+                                                <div class="loader" style="margin:auto;"></div>
+                                        </div> 
+                                        <canvas id="myChart" style="display:block; height: 266px; width: 532px;"></canvas>
                         </div>
                     </div>
+                    </div>
                   
-                    {% include 'funo/chatbox.html' %}
-
-                </div>
+                    
                
+                </div>
+               {% include 'funo/chatbox.html' %}
                 {% include 'funo/footer.html' %}
 
             </div>

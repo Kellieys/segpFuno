@@ -20,67 +20,72 @@
 
 <body>
 <div class="row">
-    <div class="col-md-4" style="background-image: url('/static/funo/img/bg-01.jpg'); height:900px;">
+    <div class="col-md-4" style="background-image: url('/static/funo/img/bg-01.jpg'); height:auto;">
       <a href="{% url 'dashboard' %}"><img src="{% static 'funo/img/funowhite.png' %}" style="width:250px; padding:50px;"></a>
     </div>
 
-    <div class="col-md-8" style="background-color: #F8F8F8">
-                    <div class="form">
-                        <h2 style="text-align: center; font-weight: 900;">Sign Up</h2>
+    <div class="col-md-8" style="background-color: #F8F8F8;">
+      <div class="form">
+        <h2 style="text-align: center; font-weight: 900;">Sign Up</h2>
                                                 
-                        <div class="tab-content">
-                          <div id="signup">   
-                            <h3 style="text-align: center;">Sign Up for Free</h3>
+          <div id="signup">   
+            <h3 style="text-align: center;">Sign Up for Free</h3>
                                                     
-                              {% for message in messages %}
-                                <p id="messages">{{message}}</p>
-                              {% endfor %}
-                                                    
-                            <form method="POST">
-                              {% csrf_token %}
-                            <div class="top-row">
+            {% for message in messages %}
+            <p id="messages" class="message-out">{{message}}</p>
+            {% endfor %}
 
-                              <div class="field-wrap">
-                                <label>
-                                  Username
-                                </label>
-                                  {{form.username}}
-                              </div>
+            <div class="row contact-form">
+              <div class="col-md-12 col-sm-12">                      
+                <form method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
 
-                            <div class="field-wrap">
-                              <label>
-                                Email Address<span class="req">*</span>
-                              </label>
-                                {{form.email}}
-                            </div>
+                  <div class="col-md-12">
+                    <div class="styled-input styled-input-wide wide">
+                      {{form.username}}
+                      <label>Username</label>
+                    </div>
+                  </div>
+
+                <div class="col-md-12">
+                    <div class="styled-input styled-input-wide wide">
+                      {{form.company}}
+                      <label>Company</label>
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-12">
+                    <div class="styled-input styled-input-wide wide">
+                      {{form.email}}
+                      <label>Email Address<span class="req">*</span></label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="styled-input styled-input-wide wide">
+                      {{form.password1}}
+                      <label>Set A Password<span class="req">*</span></label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="styled-input styled-input-wide wide">
+                      {{form.password2}}
+                      <label>Confirmation Password<span class="req">*</span></label>
+                    </div>
+                  </div>
+
+                  {{form.errors}}
+                              
+                  <button type="submit" class="button button-block">SIGN UP</button>
                             
-                            <div class="field-wrap">
-                              <label>
-                                Set A Password<span class="req">*</span>
-                              </label>
-                                {{form.password1}}
-                            </div>
+                </form>
 
-                            <div class="field-wrap">
-                              <label>
-                                Confirmation Password<span class="req">*</span>
-                              </label>
-                                {{form.password2}}
-                            </div>
-                          </div>
-
-                          {{form.errors}}
-                            
-                            <button type="submit" class="button button-block">SIGN UP</button>
-                            
-                            </form>
-
-                          </div>
+          </div>
                           
-                            <p>Already have an account?<a href="{% url 'login' %}">Login</a></p>
-                          
-                        </div><!-- tab-content -->
-                        
+          <p class="message-out" style="width:100%; padding-top:30px;">Already have an account?<a href="{% url 'login' %}">Login</a></p>
+                                                  
                   </div> <!-- /form -->
                 </div>
               </div>

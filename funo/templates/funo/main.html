@@ -16,6 +16,10 @@
     <link href="{% static 'funo/css/bootstrap.min.css' %}" rel="stylesheet" />
     <link href="{% static 'funo/css/light-bootstrap-dashboard.css' %}" rel="stylesheet" />
     <link href="{% static 'funo/css/main.css' %}" rel="stylesheet" />
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
+    
+   
 </head>
 
 <body>
@@ -48,12 +52,14 @@
 <script type="text/javascript">
             $(function() {
           var INDEX = 0; 
+          generate_message("Hi, how can I help you?", 'user');
           $("#chat-submit").click(function(e) {
             e.preventDefault();
             var msg = $("#chat-input").val(); 
             if(msg.trim() == ''){
               return false;
-            }
+            } 
+            
             generate_message(msg, 'self');
             var buttons = [
                 {
@@ -66,7 +72,7 @@
                 }
               ];
             setTimeout(function() {      
-              generate_message(msg, 'user');  
+              generate_message("We will be here to assist you soon. For more information,please visit our website! ", 'user');  
             }, 1000)
             
           })
@@ -142,7 +148,8 @@
             $(".chat-box").toggle('scale');
           })
           
-        })
+        }) 
+
 </script>
 
 </html>
