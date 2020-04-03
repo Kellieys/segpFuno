@@ -381,4 +381,10 @@ def subscription(request):
 
     return render(request, 'funo/subscription.html', context)
 
+def home(request):
+
+    context = {'page':'Home'}
+
+    return render(request, 'funo/home.html', context)
+
 

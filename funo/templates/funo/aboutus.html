@@ -15,16 +15,28 @@
           <div class="sidebar-wrapper">
               <div class="logo">
                   <a href="/" class="simple-text">
-                      <img src="{% static 'funo/img/funowhite.png' %}" width=80>
+                      <img src="{% static 'funo/img/funowhitenew.png' %}" width=180>
                   </a>
               </div>
               <ul class="nav">
+               <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'aboutus' %}">
+                        <i class="nc-icon nc-grid-45"></i>
+                        <p>About Us</p>
+                    </a>
+                </li>
                   <li>
                       <a class="nav-link" href="{% url 'dashboard' %}">
-                          <i class="nc-icon nc-chart-pie-35"></i>
+                          <i class="nc-icon nc-chart-bar-32"></i>
                           <p>Dashboard</p>
                       </a>
                   </li>
+                  <li>
+                    <a class="nav-link" href="{% url 'support' %}">
+                        <i class="nc-icon nc-atom"></i>
+                        <p>Support</p>
+                    </a>
+                </li>
                   <li>
                       <a class="nav-link" href="{% url 'user' %}">
                           <i class="nc-icon nc-circle-09"></i>
@@ -32,27 +44,9 @@
                       </a>
                   </li>
                   <li>
-                      <a class="nav-link" href="{% url 'support' %}">
-                          <i class="nc-icon nc-atom"></i>
-                          <p>Support</p>
-                      </a>
-                  </li>
-                  <li>
                       <a class="nav-link" href="{% url 'weather' %}">
                           <i class="nc-icon nc-explore-2"></i>
                           <p>Weather Forecast</p>
-                      </a>
-                  </li>
-                  <li class="nav-item active">
-                      <a class="nav-link" href="{% url 'aboutus' %}">
-                          <i class="nc-icon nc-grid-45"></i>
-                          <p>About Us</p>
-                      </a>
-                  </li>
-                  <li>
-                      <a class="nav-link" href="{%url 'subs'%}">
-                          <i class="nc-icon nc-email-85"></i>
-                          <p>Subscription</p>
                       </a>
                   </li>
               </ul>
@@ -70,6 +64,7 @@
                             <h1 style="color:white; text-shadow: 5px 5px 6px #000000;">The Future is Now.</h4>
                             <b><i><h4 style="color:white; font-weight:400; text-shadow: 3px 3px 6px #000000;">Predict future agriculture prices.
                             </h4></i></b>
+                            <a href="{% url 'dashboard' %}"><button type="submit" class="home-btn">Forecast Now</button></a>
                         </div>
                         <div class="card-body">
                              <div class="row">

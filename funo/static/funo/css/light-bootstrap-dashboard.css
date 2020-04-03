@@ -505,7 +505,7 @@ body>.navbar-collapse .nav .nav-link {
 
 .sidebar .logo,
 body>.navbar-collapse .logo {
-    padding: 10px 15px;
+    padding: 25px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -5467,3 +5467,19 @@ License - nucleoapp.com/license/
     flex-direction:column; 
   }
   
+  .home-btn{
+    color: #FFFFFF;
+    background-color: #000000;
+    opacity: 1;
+    border: 1px solid #000000;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin:3%;
+    
+  }
+
+  .home-btn:hover{
+    background-color: #315950;
+    border: 1px solid #315950;
+  }

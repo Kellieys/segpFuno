@@ -19,81 +19,14 @@
 </head>
 
 <body>
-<div class="row">
-
-    <div class="col-md-12" style="background-color: #F8F8F8;">
-      <div class ="row">
-        <div class="col-md-12">
-        <a href="{% url 'home' %}"><img src="{% static 'funo/img/funogreen.png' %}" style="width:400px; padding:80px;"></a>
-        <a href="{% url 'home' %}"><h5 style="float:right; padding:90px;"> < back to home</h5></a>
-        </div>s
+<div class="row" style="background-image: url('/static/funo/img/bg-01.jpg'); height:100%;">
+  <a href="{% url 'dashboard' %}"><img src="{% static 'funo/img/funonew.png' %}" style="width:400px; padding:80px; position:absolute;"></a>
+      <div class="col-md-12" style="margin:auto; text-align:center; color:white;">
+        <h1 style="text-shadow: 2px 2px 4px #000000;">the Future is Now.</h1>
+        <h3 style="text-shadow: 0px 0px 4px #000000; font-weight:300">Automates and improves your agriculture financial and operational performance.</h3>
+        <a href="{% url 'login' %}"><button type="submit" class="home-btn">Start Free Trial</button></a>
       </div>
-      <div class="form">
-        <h2 style="text-align: center; font-weight: 900;">Sign Up</h2>
-                                                
-          <div id="signup">   
-            <h3 style="text-align: center;">Sign Up for Free</h3>
-                                                    
-            {% for message in messages %}
-            <p id="messages" class="message-out">{{message}}</p>
-            {% endfor %}
-
-            <div class="row contact-form">
-              <div class="col-md-12 col-sm-12">                      
-                <form method="POST" enctype="multipart/form-data">
-                  {% csrf_token %}
-
-                  <div class="col-md-12">
-                    <div class="styled-input styled-input-wide wide">
-                      {{form.username}}
-                      <label>Username</label>
-                    </div>
-                  </div>
-
-                <div class="col-md-12">
-                    <div class="styled-input styled-input-wide wide">
-                      {{form.company}}
-                      <label>Company</label>
-                    </div>
-                  </div>
-
-
-                  <div class="col-md-12">
-                    <div class="styled-input styled-input-wide wide">
-                      {{form.email}}
-                      <label>Email Address<span class="req">*</span></label>
-                    </div>
-                  </div>
-
-                  <div class="col-md-12">
-                    <div class="styled-input styled-input-wide wide">
-                      {{form.password1}}
-                      <label>Set A Password<span class="req">*</span></label>
-                    </div>
-                  </div>
-
-                  <div class="col-md-12">
-                    <div class="styled-input styled-input-wide wide">
-                      {{form.password2}}
-                      <label>Confirmation Password<span class="req">*</span></label>
-                    </div>
-                  </div>
-
-                  {{form.errors}}
-                              
-                  <button type="submit" class="button button-block">SIGN UP</button>
-                            
-                </form>
-
-          </div>
-                          
-          <p class="message-out" style="width:100%; padding-top:30px;">Already have an account?<a href="{% url 'login' %}">Login</a></p>
-                                                  
-                  </div> <!-- /form -->
-                </div>
-              </div>
-            </div>
-          </div>
+</div>
 
             
 
