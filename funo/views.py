@@ -91,11 +91,15 @@ def data_Predict(request,*args,**kwargs):
         duration = my_thing['duration']
         forecast= my_thing['forecast']
         current= my_thing['current']
-        title=my_thing['title']        
-        print(current)
+        title=my_thing['title']
+        commodity = my_thing['commodity']        
+        current_price = 0
+        current_date = ""
 
         date=past_data['Date'].iloc[-current:]
-        date=pd.to_datetime(date).tolist()
+        date=pd.to_datetime(date)
+        current_date = date.iloc[-1]
+        date =date.tolist()
         if forecast==0:
             date=date
             past_data.set_index(['Date'], inplace= True)
@@ -103,12 +107,16 @@ def data_Predict(request,*args,**kwargs):
             past_data = past_data.round(2)
             past_price = past_data.loc[:]['Harga Ladang'].round(2)
             past_price = past_data['Harga Ladang'].iloc[-current:].round(2)
+            current_price = past_price.iloc[-1]
             past_price = list(map(str, past_price))
 
             date = list(map(str, date))
             for i in range (0, len(date)):
                 date[i] = date[i].split(' ')[0]
             data={
+                'commodity':commodity,
+                'current_price':current_price,
+                'current_date':current_date,
                 'forecast':forecast,
                 'title':title,
                 'labels':','.join(date),
@@ -124,6 +132,7 @@ def data_Predict(request,*args,**kwargs):
             fill_missing(past_data.values)
             past_data = past_data.round(2)
             past_price = past_data.loc[:]['Harga Ladang'].round(2)
+            
         
             date = list(map(str, date))
             for i in range (0, len(date)):
@@ -143,6 +152,7 @@ def data_Predict(request,*args,**kwargs):
             func = lambda x: round(x,2)
             future_price = [list(map(func, i)) for i in future_price]
             past_price = past_data['Harga Ladang'].iloc[-current:].round(2)
+            
             past_price= past_price.tolist() + future_price #so I get total_price and date(complete) #future price is 52
             if forecast!=52:
                 for i in range(0,(52-forecast)):
@@ -152,9 +162,12 @@ def data_Predict(request,*args,**kwargs):
 
             for i in range (1, len(past_price)):
                 past_price[i] = past_price[i].replace('[', '').replace(']', '')
-
+            current_price = past_price[len(past_price)-forecast]
 
             data={
+                'commodityItem':commodity,
+                'current_price':current_price,
+                'current_date':current_date,
                 'forecast':forecast,
                 'title':title,
                 'labels':','.join(date),
@@ -174,6 +187,7 @@ def dashboard(request):
     forecast=52
     current=260
     title="Chicken Field Price Forecast"
+    commodity2 = "Chicken"
     
     if request.method=='GET':
             commodity=request.GET.get('commodity')
@@ -185,60 +199,71 @@ def dashboard(request):
                 modelFile='rawData/coconut/coconut.h5'
                 scalerFile = 'rawData/coconut/coconut.pkl'
                 title="Coconut Field Price Forecast"
+                commodity2 = "Coconut"
+
             
             elif commodity=='kangkung':
                 dataFile='rawData/vegetables/kangkung/kangkung.csv'
                 modelFile='rawData/vegetables/kangkung/kangkung.h5'
                 scalerFile = 'rawData/vegetables/kangkung/kangkung.pkl'
                 title="Water Spinach Field Price Forecast"
+                commodity2 = "Water Spinach (Kang-kong)"
 
             elif commodity=='sawiHijau':
                 dataFile='rawData/vegetables/sawiHijau/sawiHijau.csv'
                 modelFile='rawData/vegetables/sawiHijau/sawiHijau.h5'
                 scalerFile = 'rawData/vegetables/sawiHijau/sawiHijau.pkl'
                 title="Choy Sum Field Price Forecast"
+                commodity2 = "Choy Sum"
             
             elif commodity=='tomato':
                 dataFile='rawData/fruits/tomato/tomato.csv'
                 modelFile='rawData/fruits/tomato/tomato.h5'
                 scalerFile = 'rawData/fruits/tomato/tomato.pkl'
                 title="Tomato Field Price Forecast"
+                commodity2 = "Tomato"
 
             elif commodity=='chilli':
                 dataFile='rawData/fruits/chilli/chilli.csv'
                 modelFile='rawData/fruits/chilli/chilli.h5'
                 scalerFile = 'rawData/fruits/chilli/chilli.pkl'
                 title="Red Chilli Field Price Forecast"
+                commodity2 = "Red Chili"
 
             elif commodity=='chicken':
                 dataFile='rawData/poultry/chicken/chicken.csv'
                 modelFile='rawData/poultry/chicken/chicken.h5'
                 scalerFile = 'rawData/poultry/chicken/chicken.pkl'
                 title="Chicken Field Price Forecast"
+                commodity2 = "Chicken"
 
             elif commodity=='eggA':
                 dataFile='rawData/poultry/eggA/eggA.csv'
                 modelFile='rawData/poultry/eggA/eggA.h5'
                 scalerFile = 'rawData/poultry/eggA/eggA.pkl'
                 title="Egg (Grade A) Field Price Forecast"
+                commodity2 = "Egg (Grade A)"
 
             elif commodity=='eggB':
                 dataFile='rawData/poultry/eggB/eggB.csv'
                 modelFile='rawData/poultry/eggB/eggB.h5'
                 scalerFile = 'rawData/poultry/eggB/eggB.pkl'
                 title="Egg (Grade B) Field Price Forecast"
+                commodity2 = "Egg (Grade B)"
 
             elif commodity=='eggC':
                 dataFile='rawData/poultry/eggC/eggC.csv'
                 modelFile='rawData/poultry/eggC/eggC.h5'
                 scalerFile = 'rawData/poultry/eggC/eggC.pkl'
                 title="Egg (Grade C) Field Price Forecast"
+                commodity2 = "Egg (Grade C)"
             
             elif commodity=="":
                 dataFile='rawData/poultry/chicken/chicken.csv'
                 modelFile='rawData/poultry/chicken/chicken.h5'
                 scalerFile = 'rawData/poultry/chicken/chicken.pkl'
                 title="Chicken Field Price Forecast"
+                commodity2 = "Chicken"
             
 
             if duration=="sixmonth":
@@ -304,7 +329,8 @@ def dashboard(request):
                 'duration':durationVar,
                 'forecast':forecast,
                 'current':current,
-                'title':title
+                'title':title,
+                'commodity':commodity2
             }
             request.session['data']=data
 
