@@ -22,7 +22,7 @@
                         var data1=[];
                         var data2=[];
                         var i,commodity,current_price,current_date;
-                        var html = "<table class ='table table-stripped'><thead><tr><th>Date</th><th>Price (Malaysian Ringgit) </th></tr></thead><tbody>";
+                        var html = "<h3> Recent price </h3><table class ='table table-stripped'><thead><tr><th>Date</th><th>Price (Malaysian Ringgit) </th></tr></thead><tbody>";
                         $.ajax({
                             method: "GET",
                             url: endpoint,
@@ -92,20 +92,21 @@
                                 }
                                 document.getElementById('tableItem').innerHTML=html;
                                 var x = "";
-                                if(commodity=="Chicken") x="'funo/rawData/poultry/chicken/chicken.csv'";
-                                else if (commodity=="Coconut") x="'funo/rawData/coconut/coconut.csv'";
-                                else if (commodity=="Water Spinach (Kang-kong)") x="'funo/rawData/vegetables/kangkung/kangkung.csv'";
-                                else if (commodity=="Choy Sum") x="'funo/rawData/vegetables/sawiHijau/sawiHijau.csv'";
-                                else if (commodity=="Tomato") x="'funo/rawData/fruits/tomato/tomato.csv'";
-                                else if (commodity=="Red Chili") x="'funo/rawData/fruits/chilli/chilli.csv'";
-                                else if (commodity=="Egg (Grade A)") x="'funo/rawData/poultry/eggA/eggA.csv'";
-                                else if (commodity=="Egg (Grade B)") x="'funo/rawData/poultry/eggB/eggB.csv'";
-                                else if (commodity=="Egg (Grade C)") x="'funo/rawData/poultry/eggC/eggC.csv'";
+
+                                if(commodity=="Chicken") {x="<a href={% static 'funo/rawData/poultry/chicken/chicken.csv'%} download>";}
                                 
+                                else if (commodity=="Coconut") {x="<a href={% static 'funo/rawData/coconut/coconut.csv'%} download>";}
+                                else if (commodity=="Water Spinach (Kang-kong)") {x="<a href={% static 'funo/rawData/vegetables/kangkung/kangkung.csv'%} download>";}
+                                else if (commodity=="Choy Sum") {x="<a href={% static 'funo/rawData/vegetables/sawiHijau/sawiHijau.csv'%} download>";}
+                                else if (commodity=="Tomato") {x="<a href={% static 'funo/rawData/fruits/tomato/tomato.csv'%} download>";}
+                                else if (commodity=="Red Chili") {x="<a href={% static 'funo/rawData/fruits/chilli/chilli.csv'%} download>";}
+                                else if (commodity=="Egg (Grade A)"){x="<a href={% static 'funo/rawData/poultry/eggA/eggA.csv'%} download>";}
+                                else if (commodity=="Egg (Grade B)") {x="<a href={% static 'funo/rawData/poultry/eggB/eggB.csv'%} download>";}
+                                else if (commodity=="Egg (Grade C)") {x="<a href={% static 'funo/rawData/poultry/eggC/eggC.csv'%} download>";}
+                                else{x="<a href={% static 'funo/rawData/poultry/chicken/chicken.csv'%} download>";}
 
 
-
-                                var r ="<a href={% static "+x"%} download>More data</a>";
+                                var r =x+"More data</a>";
                                 
 
 
