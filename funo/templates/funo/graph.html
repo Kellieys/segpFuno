@@ -22,7 +22,7 @@
                         var data1=[];
                         var data2=[];
                         var i,commodity,current_price,current_date;
-                        var html = "<h3> Recent price </h3><table class ='table table-stripped'><thead><tr><th>Date</th><th>Price (Malaysian Ringgit) </th></tr></thead><tbody>";
+                        var html = "<h4> Recent price </h4><table class ='table table-stripped'><thead><tr><th>Date</th><th>Price (Malaysian Ringgit) </th></tr></thead><tbody>";
                         $.ajax({
                             method: "GET",
                             url: endpoint,
@@ -82,7 +82,7 @@
 
                                 }
                                 else{
-                                    for(var i =0;i<25;i++){
+                                    for(var i =0;i<10;i++){
                                     html+="<tr>";
                                     html+="<td>"+labels[labels.length-forecast-i]+"</td>";
                                     html+="<td>"+defaultData[defaultData.length-forecast-i]+"</td>";
@@ -106,7 +106,7 @@
                                 else{x="<a href={% static 'funo/rawData/poultry/chicken/chicken.csv'%} download>";}
 
 
-                                var r =x+"More data</a>";
+                                var r =x+"Download Complete Data</a>";
                                 
 
 
@@ -124,7 +124,7 @@
                             
                         });
 
-                        function setChart(){
+                        function setChart(){ 
                             var ctx = document.getElementById("myChart");
                             var ctx = document.getElementById("myChart");
                             var ctx2 = document.getElementById("myChart2");
@@ -134,20 +134,20 @@
                                 labels: labels,
                                 datasets: [{
                                     label: 'Price',
-                                    fill:false,
+                                    fill:'true',
                                     data: data1,
                                     pointRadius:1,
-                                    backgroundColor: 'rgb(49, 113, 133)',
+                                    backgroundColor: 'rgb(49, 113, 133,0.1)',
                                     borderColor: 'rgb(49, 113, 133)',
                                     borderWidth: 1,
                                     pointHoverRadius:5
                                 },
                                 {
                                     label: 'Forecast Price',
-                                    fill:false,
+                                    fill:true,
                                     data: data2,
                                     pointRadius:1,
-                                    backgroundColor: 'rgb(99, 217, 93)',
+                                    backgroundColor: 'rgb(99, 217, 93,0.1)',
                                     borderColor: 'rgb(99, 217, 93)',
                                     borderWidth: 1,
                                     pointHoverRadius:5

@@ -1678,11 +1678,12 @@ fieldset[disabled] .form-control {
     font-size: 12px;
     text-transform: uppercase;
     color: #9A9A9A;
-    font-weight: 400;
-    padding-bottom: 5px;
+    font-weight: 600;
+    padding: 18px;
     border-top: none !important;
     border-bottom: none;
     text-align: left !important;
+    background-color: #e9ecef;
 }
 
 .table .td-actions .btn {
@@ -1701,6 +1702,10 @@ fieldset[disabled] .form-control {
 
 .table>tbody>tr {
     position: relative;
+}
+
+.table>tbody>tr:hover{
+    background-color: rgb(49, 89, 80,0.1);
 }
 
 .table>tbody>tr:hover .td-actions .btn {
@@ -2849,7 +2854,6 @@ Copyright (c) 2015 Daniel Eden
 .card .table tbody td:last-child,
 .card .table thead th:last-child {
     padding-right: 15px;
-    display: inline-flex;
 }
 
 .card .alert {
@@ -5222,6 +5226,7 @@ License - nucleoapp.com/license/
     border:1px solid #315950;
     border-radius: 5px;
     color:#000000;
+    margin-bottom:10px;
     background-color: transparent;
 }
 #submitbutton{

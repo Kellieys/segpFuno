@@ -60,34 +60,38 @@
 
             <div class="content">
                 <div class="container-fluid">
-                    <div class="row">
+                <form method='GET'>
+                    <div class= "row">
                         <div class="col-md-12">
-                                        <div>
-                                        <h1 id = "commodityItem">
-                                        <strong id = "current_price"/></h1>
-                                        </div>
+                            <h5><b>Forecast Selection</b></h5>
                         </div>
                     </div>
-                <form method='GET'>
-                    <div class="row" style="padding:20px;">
+                    <div class="row">
                         <div class="col-md-3">
                             <div class="nav-item dropdown" >
                                         <select class="nav-link dropdown-toggle form-control" name="commodity" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" >
                                             
                                         
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <option class="dropdown-item"  name="option"  value="">Select Commodity</option>
-                                            <option class="dropdown-item"  name="option"  value="kangkung">Water Spinach</option>
-                                            <option class="dropdown-item"  name="option"  value="sawiHijau">Choy Sum</option>
-                                            <option class="dropdown-item" name="option"  value="tomato">Tomato</option>
-                                            <option class="dropdown-item" name="option"  value="chilli">Red Chilli</option>
-                                            <option class="dropdown-item"  name="option" value="chicken">Chicken</option>
-                                            <option class="dropdown-item" name="option"  value="eggA">Egg (Grade A)</option>
-                                            <option class="dropdown-item" name="option"  value="eggB">Egg (Grade B)</option>
-                                            <option class="dropdown-item" name="option"  value="eggC">Egg (Grade C)</option>
-                                            <option class="dropdown-item" name="option"  value="coconut">Coconut</option>
+                                            <option class="dropdown-item"  name="option"  value="">--Select Commodity--</option>
                                             
-                             
+                                            <optgroup label="Vegetables">
+                                                <option class="dropdown-item"  name="option"  value="kangkung">Water Spinach</option>
+                                                <option class="dropdown-item"  name="option"  value="sawiHijau">Choy Sum</option>
+                                            </optgroup>
+                                            
+                                            <optgroup label="Fruits">
+                                                <option class="dropdown-item" name="option"  value="tomato">Tomato</option>
+                                                <option class="dropdown-item" name="option"  value="chilli">Red Chilli</option>
+                                                <option class="dropdown-item" name="option"  value="coconut">Coconut</option>
+                                            </optgroup>
+
+                                            <optgroup label="Poultry">
+                                                <option class="dropdown-item"  name="option" value="chicken">Chicken</option>
+                                                <option class="dropdown-item" name="option"  value="eggA">Egg (Grade A)</option>
+                                                <option class="dropdown-item" name="option"  value="eggB">Egg (Grade B)</option>
+                                                <option class="dropdown-item" name="option"  value="eggC">Egg (Grade C)</option>
+                                            </optgroup>
                                            
                                         </div></select>
                             </div>
@@ -98,7 +102,7 @@
                                         <select class="nav-link dropdown-toggle form-control"name="duration" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <option class="dropdown-item"  name="option"  value="">Select Duration</option>
+                                            <option class="dropdown-item"  name="option"  value="">--Select Duration--</option>
                                             <option class="dropdown-item"  name="option"  value="sixmonth">6 Months</option>
                                             <option class="dropdown-item"  name="option"  value="oneyear">1 Year</option>
                                             <option class="dropdown-item"  name="option"  value="threeyear">3 Year</option>
@@ -113,7 +117,7 @@
                                     <select class="nav-link dropdown-toggle form-control"name="datatype" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <option class="dropdown-item"  name="option"  value="">Select Data Type</option>
+                                            <option class="dropdown-item"  name="option"  value="">--Output Type--</option>
                                             <option class="dropdown-item"  name="option"  value="pastdata">Past Data</option>
                                             <option class="dropdown-item"  name="option"  value="forecast3month">Forecast Data (3 Months)</option>
                                             <option class="dropdown-item"  name="option"  value="forecast6month">Forecast Data (6 Months)</option>
@@ -130,28 +134,44 @@
                             </div>
                         </div>
                     </div> </form>
-                    <div class="card" style="padding: 20px; height: 100%;">
-                    <div class="row">
-                        <div class="col-md-12">
-                                        <div id='loader'>
-                                                <div class="loader" style="margin:auto;"></div>
-                                        </div> 
-                                        <canvas id="myChart" style="display:block; height: 266px; width: 532px;"></canvas>
-                        </div>
-                    </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-7">
-                                    <div id="tableItem" style="margin:auto;"></div>
-                                         
-                        </div>
-                    </div>
-                  
-                    <div class="col-md-3" id ="downloadLink">
-                                
+                    <div class="container-fluid" style="margin: 20px 0 20px 0;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                            <div>
+                                            <h3 id = "commodityItem" style="font-weight: 400;"></h3>
+                                            <h4><i>Current Price &nbsp</i><strong id = "current_price"></h4>
+                                            </div>
                             </div>
-               
+                        </div>
+
+                        <div class="card" style="padding: 40px; height: 100%;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id='loader'>
+                                        <div class="loader" style="margin:auto;"></div>
+                                    </div> 
+                                    <canvas id="myChart" style="display:block; height: 266px; width: 532px;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                    <h4><i>Table List</i></h4>
+                            </div>
+                        </div>
+
+                        <div class="card" style="padding: 40px; height: 100%;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                        <div id="tableItem" style="margin:auto;"></div>          
+                            </div>
+                            <div class="col-md-12" id ="downloadLink"></div>
+                        </div>
+                        </div>
+                  
+                    </div>
                 </div>
                {% include 'funo/chatbox.html' %}
                 {% include 'funo/footer.html' %}
