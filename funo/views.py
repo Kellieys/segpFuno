@@ -27,7 +27,7 @@ from pickle import load
 User = get_user_model()
 def registerPage(request):
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        return redirect('aboutus')
     else:
         form = CreateUserForm()
 
@@ -47,7 +47,7 @@ def registerPage(request):
 
 def loginPage(request):
     if request.user.is_authenticated:
-         return redirect('dashboard')
+         return redirect('aboutus')
     else:
         if request.method == 'POST':
             username = request.POST.get('username')
@@ -57,7 +57,7 @@ def loginPage(request):
 
             if user is not None:
                 login(request,user)
-                return redirect('dashboard')
+                return redirect('aboutus')
             else:
                 messages.info(request, 'Username OR password is incorrect')
 
@@ -177,6 +177,9 @@ def data_Predict(request,*args,**kwargs):
         print(len(past_price))
         K.clear_session()
         return JsonResponse(data)
+
+
+
 
 @login_required(login_url='login')
 def dashboard(request):
@@ -384,12 +387,7 @@ def support(request):
 
     return render(request, 'funo/support.html', context)
 
-@login_required(login_url='login')
-def weather(request):
 
-    context = {'page':'Weather Forecast'}
-
-    return render(request, 'funo/weather.html', context)
 
 
 @login_required(login_url='login')
@@ -400,10 +398,11 @@ def aboutus(request):
     return render(request, 'funo/aboutus.html', context)
 
 
+
 @login_required(login_url='login')
 def subscription(request):
 
-    context = {'page':'Subscription'}
+    context = {'page':'Subscription Plans & FaQ'}
 
     return render(request, 'funo/subscription.html', context)
 
