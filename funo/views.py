@@ -7,8 +7,8 @@ from .models import *
 from .forms import CreateUserForm, SupportForm,UpdateProfileForm
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
-from keras import backend
-from keras.models import load_model
+from tensorflow.keras import backend
+from tensorflow.keras.models import load_model
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
@@ -21,7 +21,7 @@ from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from django.conf import settings
 from django.views.generic import View
-from keras import backend as K
+from tensorflow.keras import backend as K
 from pickle import load
 
 User = get_user_model()
@@ -86,6 +86,8 @@ def data_Predict(request,*args,**kwargs):
         K.clear_session()
         my_thing = request.session.get('data', None)
         past_data = pd.read_csv(my_thing['dataFile'])
+        features = pd.read_csv(my_thing['featuresFile'])
+        multivariate = my_thing['multivariate']
         regressor = load_model(my_thing['modelFile'])
         scaler = load(open(my_thing['scalerFile'], 'rb'))
         duration = my_thing['duration']
@@ -123,46 +125,104 @@ def data_Predict(request,*args,**kwargs):
                 'default': ','.join(past_price)
             }
         else:
-            date2=past_data["Date"].iloc[-1]
-            date2=pd.Series(pd.date_range(date2, periods=forecast+1, freq='7D'))
-            date2=date2[1:].tolist()   
-            date=date + date2
-        
-            past_data.set_index(['Date'], inplace= True)
-            fill_missing(past_data.values)
-            past_data = past_data.round(2)
-            past_price = past_data.loc[:]['Harga Ladang'].round(2)
-            
-        
-            date = list(map(str, date))
-            for i in range (0, len(date)):
-                date[i] = date[i].split(' ')[0]
-            feedin_price = []
-            feedin_price.append(past_price[(len(past_price)-52):])
-            feedin_price = np.array(feedin_price)
+            if multivariate == True:
+                date2=past_data["Date"].iloc[-1]
+                date2=pd.Series(pd.date_range(date2, periods=forecast+1, freq='7D'))
+                date2=date2[1:].tolist()   
+                date=date + date2
 
-            feedin_price_scaled = scaler.transform(feedin_price.reshape(-1, 1))
-            feedin_price_scaled = feedin_price_scaled.reshape(1, feedin_price_scaled.shape[0], 1)
-            
-            future_price = regressor.predict(feedin_price_scaled)
-            future_price = scaler.inverse_transform(future_price)
-            future_price = future_price.reshape(-1 ,1)
-        
-            future_price=future_price.round(2).tolist()
-            func = lambda x: round(x,2)
-            future_price = [list(map(func, i)) for i in future_price]
-            past_price = past_data['Harga Ladang'].iloc[-current:].round(2)
-            
-            past_price= past_price.tolist() + future_price #so I get total_price and date(complete) #future price is 52
-            if forecast!=52:
-                for i in range(0,(52-forecast)):
-                    past_price.pop()
+                date = list(map(str, date))
+                for i in range (0, len(date)):
+                    date[i] = date[i].split(' ')[0]
 
-            past_price = list(map(str, past_price))
+                past_data.set_index(['Date'], inplace= True)
+                features.set_index(['Date'], inplace= True)
+                fill_missing(past_data.values)
+                past_data = past_data.round(2)
+                past_price = past_data.loc[:]['Harga Ladang'].round(2)
+                past_price2 = past_price
+                past_price2 = np.array(past_price2)
+                past_price2 = past_price2.reshape(len(past_price2), 1)
 
-            for i in range (1, len(past_price)):
-                past_price[i] = past_price[i].replace('[', '').replace(']', '')
-            current_price = past_price[len(past_price)-forecast]
+                past_features = features.head(len(past_price2))
+                past_crude_oil_price = past_features.loc[:, ['Crude Oil Price']]
+                past_crude_oil_price = np.array(past_crude_oil_price)
+                past_crude_oil_price = past_crude_oil_price / 1000
+                past_features = past_features.loc[:, ['Temperature (Celcius)', 'Humidity(%)']]
+                past_features = np.array(past_features)
+                past_price2 = np.append(past_price2, past_features, axis=1)
+                past_price2 = np.append(past_price2, past_crude_oil_price, axis=1)
+
+                feedin_price = []
+                feedin_price.append(past_price2[(len(past_price2)-52):])
+                feedin_price = np.array(feedin_price)
+
+                feedin_price_scaled = scaler.transform(feedin_price.reshape(-1, 1))
+                feedin_price_scaled = feedin_price_scaled.reshape(-1, 4)
+                feedin_price_scaled = feedin_price_scaled.reshape(1, -1, 4)
+                
+                future_price = regressor.predict(feedin_price_scaled)
+                future_price = scaler.inverse_transform(future_price)
+                future_price = future_price.reshape(-1 ,1)
+            
+                future_price=future_price.round(2).tolist()
+                func = lambda x: round(x,2)
+                future_price = [list(map(func, i)) for i in future_price]
+                past_price = past_data['Harga Ladang'].iloc[-current:].round(2)
+                
+                past_price= past_price.tolist() + future_price #so I get total_price and date(complete) #future price is 52
+                if forecast!=52:
+                    for i in range(0,(52-forecast)):
+                        past_price.pop()
+
+                past_price = list(map(str, past_price))
+
+                for i in range (1, len(past_price)):
+                    past_price[i] = past_price[i].replace('[', '').replace(']', '')
+                current_price = past_price[len(past_price)-forecast]
+
+            else:
+                date2=past_data["Date"].iloc[-1]
+                date2=pd.Series(pd.date_range(date2, periods=forecast+1, freq='7D'))
+                date2=date2[1:].tolist()   
+                date=date + date2
+            
+                past_data.set_index(['Date'], inplace= True)
+                fill_missing(past_data.values)
+                past_data = past_data.round(2)
+                past_price = past_data.loc[:]['Harga Ladang'].round(2)
+                
+            
+                date = list(map(str, date))
+                for i in range (0, len(date)):
+                    date[i] = date[i].split(' ')[0]
+                feedin_price = []
+                feedin_price.append(past_price[(len(past_price)-52):])
+                feedin_price = np.array(feedin_price)
+
+                feedin_price_scaled = scaler.transform(feedin_price.reshape(-1, 1))
+                feedin_price_scaled = feedin_price_scaled.reshape(1, feedin_price_scaled.shape[0], 1)
+                
+                future_price = regressor.predict(feedin_price_scaled)
+                future_price = scaler.inverse_transform(future_price)
+                future_price = future_price.reshape(-1 ,1)
+            
+                future_price=future_price.round(2).tolist()
+                func = lambda x: round(x,2)
+                future_price = [list(map(func, i)) for i in future_price]
+                past_price = past_data['Harga Ladang'].iloc[-current:].round(2)
+                
+                past_price= past_price.tolist() + future_price #so I get total_price and date(complete) #future price is 52
+                if forecast!=52:
+                    for i in range(0,(52-forecast)):
+                        past_price.pop()
+
+                past_price = list(map(str, past_price))
+
+                for i in range (1, len(past_price)):
+                    past_price[i] = past_price[i].replace('[', '').replace(']', '')
+                current_price = past_price[len(past_price)-forecast]
+                
 
             data={
                 'commodityItem':commodity,
@@ -181,6 +241,8 @@ def data_Predict(request,*args,**kwargs):
 @login_required(login_url='login')
 def dashboard(request):
     dataFile='rawData/poultry/chicken/chicken.csv'
+    featuresFile = 'rawData/features.csv'
+    multivariate = False
     modelFile='rawData/poultry/chicken/chicken.h5'
     scalerFile = 'rawData/poultry/chicken/chicken.pkl'
     durationVar=0
@@ -196,6 +258,7 @@ def dashboard(request):
             
             if commodity=='coconut':
                 dataFile='rawData/coconut/coconut.csv'
+                multivariate = False
                 modelFile='rawData/coconut/coconut.h5'
                 scalerFile = 'rawData/coconut/coconut.pkl'
                 title="Coconut Field Price Forecast"
@@ -204,6 +267,7 @@ def dashboard(request):
             
             elif commodity=='kangkung':
                 dataFile='rawData/vegetables/kangkung/kangkung.csv'
+                multivariate = True
                 modelFile='rawData/vegetables/kangkung/kangkung.h5'
                 scalerFile = 'rawData/vegetables/kangkung/kangkung.pkl'
                 title="Water Spinach Field Price Forecast"
@@ -211,6 +275,7 @@ def dashboard(request):
 
             elif commodity=='sawiHijau':
                 dataFile='rawData/vegetables/sawiHijau/sawiHijau.csv'
+                multivariate = True
                 modelFile='rawData/vegetables/sawiHijau/sawiHijau.h5'
                 scalerFile = 'rawData/vegetables/sawiHijau/sawiHijau.pkl'
                 title="Choy Sum Field Price Forecast"
@@ -218,6 +283,7 @@ def dashboard(request):
             
             elif commodity=='tomato':
                 dataFile='rawData/fruits/tomato/tomato.csv'
+                multivariate = True
                 modelFile='rawData/fruits/tomato/tomato.h5'
                 scalerFile = 'rawData/fruits/tomato/tomato.pkl'
                 title="Tomato Field Price Forecast"
@@ -225,6 +291,7 @@ def dashboard(request):
 
             elif commodity=='chilli':
                 dataFile='rawData/fruits/chilli/chilli.csv'
+                multivariate = True
                 modelFile='rawData/fruits/chilli/chilli.h5'
                 scalerFile = 'rawData/fruits/chilli/chilli.pkl'
                 title="Red Chilli Field Price Forecast"
@@ -232,6 +299,7 @@ def dashboard(request):
 
             elif commodity=='chicken':
                 dataFile='rawData/poultry/chicken/chicken.csv'
+                multivariate = False
                 modelFile='rawData/poultry/chicken/chicken.h5'
                 scalerFile = 'rawData/poultry/chicken/chicken.pkl'
                 title="Chicken Field Price Forecast"
@@ -239,6 +307,7 @@ def dashboard(request):
 
             elif commodity=='eggA':
                 dataFile='rawData/poultry/eggA/eggA.csv'
+                multivariate = False
                 modelFile='rawData/poultry/eggA/eggA.h5'
                 scalerFile = 'rawData/poultry/eggA/eggA.pkl'
                 title="Egg (Grade A) Field Price Forecast"
@@ -246,6 +315,7 @@ def dashboard(request):
 
             elif commodity=='eggB':
                 dataFile='rawData/poultry/eggB/eggB.csv'
+                multivariate = False
                 modelFile='rawData/poultry/eggB/eggB.h5'
                 scalerFile = 'rawData/poultry/eggB/eggB.pkl'
                 title="Egg (Grade B) Field Price Forecast"
@@ -253,6 +323,7 @@ def dashboard(request):
 
             elif commodity=='eggC':
                 dataFile='rawData/poultry/eggC/eggC.csv'
+                multivariate = False
                 modelFile='rawData/poultry/eggC/eggC.h5'
                 scalerFile = 'rawData/poultry/eggC/eggC.pkl'
                 title="Egg (Grade C) Field Price Forecast"
@@ -260,6 +331,8 @@ def dashboard(request):
             
             elif commodity=="":
                 dataFile='rawData/poultry/chicken/chicken.csv'
+
+                multivariate = False
                 modelFile='rawData/poultry/chicken/chicken.h5'
                 scalerFile = 'rawData/poultry/chicken/chicken.pkl'
                 title="Chicken Field Price Forecast"
@@ -324,6 +397,8 @@ def dashboard(request):
             print(dataFile)
             data={
                 'dataFile':dataFile,
+                'featuresFile':featuresFile,
+                'multivariate':multivariate,
                 'modelFile':modelFile,
                 'scalerFile':scalerFile,
                 'duration':durationVar,
