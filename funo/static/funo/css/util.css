@@ -2672,6 +2672,17 @@
 	align-items: stretch;
 }
 
+.sutext-center12 {
+	display: -ms-flexbox;
+	text-align: center!important;
+	margin: center;
+	margin-right: -40;
+	margin-left: -46;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
 .flex-l-m {
 	display: -webkit-box;
 	display: -webkit-flex;

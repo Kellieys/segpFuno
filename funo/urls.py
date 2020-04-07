@@ -14,10 +14,9 @@ urlpatterns = [
     path('user/', views.user, name='user'),
     path('support/', views.support, name='support'),
     path('aboutus/', views.aboutus, name='aboutus'),
-    path('weather/', views.weather, name='weather'),
     path('subscription/', views.subscription, name='subs'),
     # url(r'^$', views.Predict, name='blog-home'),
-    url(r'^dashboard/model/$',views.data_Predict,name="model")
+    url(r'^dashboard/model/$',views.data_Predict,name="model"),
 ]
 
 
