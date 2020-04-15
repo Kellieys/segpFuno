@@ -56,8 +56,8 @@
         <div class="main-panel">
             
             {% include 'funo/navbar.html' %}
-            <h3 style="text-align:center;"><b>Flexible Plans & Pricing </b></h3>
-            <p style="text-align:center;">Choose your plan now! </p>
+            <h2 style="text-align:center;">Flexible Plans & Pricing</h2>
+            <h5 style="text-align:center;">Choose your plan now! </h5>
             <div class="content">
                 
                 <div class="container-fluid">
@@ -65,7 +65,7 @@
                     <div class="row"> 
                         <div class="col-md-3">
                         
-                            <div class="card border-success" style="padding: 20px;">
+                            <div class="card align border-success" style="padding: 20px;">
                                
                                 <h3 style="font-weight:400;">14-Days free trial</h3>
                                 <p><i>What's included: </i></p>
@@ -79,7 +79,7 @@
                                     <li>Live chat support</li>
                                     <li>Cancel anytime</li>
                                 </ul>
-                                <button type="submit" class="btn btn-info btn-fill pull-right" style="background-color: #000000; border-color: #000000;"><i class="nc-icon nc-check-2"></i>&nbsp Subscribed</button>
+                                <button type="submit" class="btn btn-info btn-fill pull-right buttonalign" style="background-color: #000000; border-color: #000000;"><i class="nc-icon nc-check-2"></i>&nbsp Subscribed</button>
                             </div>
                             
                         </div>
@@ -87,7 +87,7 @@
                     
                         <div class="col-md-3">
                     
-                            <div class="card" style="padding: 20px;">
+                            <div class="card align" style="padding: 20px;">
                                 <h3 style="font-weight:400;">Professional</h3>
                                 <p><i>Starting at:</i></p>
                                 <h3 style="text-align:center;"><span class="text-md font-weight-bold mr-2">$</span>65</h3>
@@ -109,13 +109,13 @@
                                     <li>Predict commodities prices by identifying zones</li>
                                     <li>Social media integradetion</li>
                                 </ul>
-                                <button type="submit" class="btn btn-info btn-fill pull-right" data-toggle="modal" data-target="#centralModal">Subscribe Now</button>
+                                <button type="submit" class="btn btn-info btn-fill pull-right buttonalign" data-toggle="modal" data-target="#centralModal">Subscribe Now</button>
                             </div>
                         </div> 
                         <div class="col-md-3">
                            
                         
-                            <div class="card" style="padding: 20px;">
+                            <div class="card align" style="padding: 20px;">
                                 <h3 style="line-height:0.2; font-weight:400;">Premium<small><i class="fa fa-thumbs-o-up" style="color:rgb(36, 143, 59);"></i></small></h3>
                                 <p><i>Starting at:</i></p>
                                 <h3 style="text-align:center;"><span class="text-md font-weight-bold mr-2">$</span>100</h3>
@@ -138,13 +138,13 @@
                                     <li>Machinery & IOT integration</li>
                                     <li>Install into your PC/LAPTOP</li>
                                 </ul>
-                                <button type="submit" class="btn btn-info btn-fill pull-right" data-toggle="modal" data-target="#centralModal">Subscribe Now</button>
+                                <button type="submit" class="btn btn-info btn-fill pull-right buttonalign" data-toggle="modal" data-target="#centralModal">Subscribe Now</button>
                             </div>
                         </div>
 
                          <div class="col-md-3">
                             
-                            <div class="card" style="padding: 20px;">
+                            <div class="card align" style="padding: 20px;">
                                 <h3 style="font-weight:500;">Enterprise</h3>
                             </br>
                                 <h3 style="text-align:center;"><span class="text-md font-weight-bold mr-2"></span>Contact us</h3>
@@ -163,10 +163,11 @@
                                     <li>Company-Branded User Interface</li>
             
                                     
-                                </ul><div class="text-center">
-                                <a href="{% url 'support' %}"><button type="submit" class="btn btn-info btn-fill btn-block"  data-toggle="modal" >Schedule a demo</button>
-                                </a></div></br>
+                                </ul>
                                 <p style="font-size:80%;"><i>Get in touch with our Sales team and let them provide you a quote.</i></p>
+                                <div class="text-center">
+                                <a href="{% url 'support' %}"><button type="submit" class="btn btn-info btn-fill btn-block buttonalign"  data-toggle="modal" >Schedule a demo</button>
+                                </a></div></br>
                             </div>
                         </div>
                     </div>
@@ -178,9 +179,9 @@
                 <div class="span12">
                     <h2 id="faq" class="text-center">Frequently Asked Questions</h2>
                 </br>
-                
+                <div class="card" style="padding:20px;">
                 <div class="container">
-                     <h3><b>Billing</b></h3>
+                     <h3><b>Billing Information</b></h3>
                         <div id="accordion">
                             
                             <div class="card" style="background-color:#11ffee00; border-color:#11ffee00;">
@@ -322,6 +323,7 @@
                                </div>
                                </div>
                                </div>
+                            </div>
                                </div>
                          
                          
@@ -396,9 +398,9 @@
            
            
             <!-- Modal -->
-           {% include 'funo/footer.html' %}
     
         </div>
+        {% include 'funo/footer.html' %}
 
     </div>
 
