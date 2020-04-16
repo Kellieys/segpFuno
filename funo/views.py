@@ -116,7 +116,7 @@ def data_Predict(request,*args,**kwargs):
             for i in range (0, len(date)):
                 date[i] = date[i].split(' ')[0]
             data={
-                'commodity':commodity,
+                'commodityItem':commodity,
                 'current_price':current_price,
                 'current_date':current_date,
                 'forecast':forecast,
@@ -125,7 +125,7 @@ def data_Predict(request,*args,**kwargs):
                 'default': ','.join(past_price)
             }
         else:
-            if multivariate == True:
+            if multivariate == "True":
                 date2=past_data["Date"].iloc[-1]
                 date2=pd.Series(pd.date_range(date2, periods=forecast+1, freq='7D'))
                 date2=date2[1:].tolist()   
@@ -245,7 +245,7 @@ def data_Predict(request,*args,**kwargs):
 def dashboard(request):
     dataFile='rawData/poultry/chicken/chicken.csv'
     featuresFile = 'rawData/features.csv'
-    multivariate = False
+    multivariate = "False"
     modelFile='rawData/poultry/chicken/chicken.h5'
     scalerFile = 'rawData/poultry/chicken/chicken.pkl'
     durationVar=0
@@ -258,10 +258,11 @@ def dashboard(request):
             commodity=request.GET.get('commodity')
             duration=request.GET.get('duration')
             datatype=request.GET.get('datatype')
-            
+            multivariateget=request.GET.get('multivariate')
+
             if commodity=='coconut':
                 dataFile='rawData/coconut/coconut.csv'
-                multivariate = False
+                multivariate = "False"
                 modelFile='rawData/coconut/coconut.h5'
                 scalerFile = 'rawData/coconut/coconut.pkl'
                 title="Coconut Field Price Forecast"
@@ -270,39 +271,55 @@ def dashboard(request):
             
             elif commodity=='kangkung':
                 dataFile='rawData/vegetables/kangkung/kangkung.csv'
-                multivariate = True
-                modelFile='rawData/vegetables/kangkung/kangkung.h5'
-                scalerFile = 'rawData/vegetables/kangkung/kangkung.pkl'
+                multivariate = multivariateget
+                if multivariate == "True":
+                    modelFile='rawData/vegetables/kangkung/multivariate/kangkung.h5'
+                    scalerFile = 'rawData/vegetables/kangkung/multivariate/kangkung.pkl'
+                elif multivariate == "False":
+                    modelFile='rawData/vegetables/kangkung/univariate/kangkung.h5'
+                    scalerFile = 'rawData/vegetables/kangkung/univariate/kangkung.pkl'
                 title="Water Spinach Field Price Forecast"
                 commodity2 = "Water Spinach (Kang-kong)"
 
             elif commodity=='sawiHijau':
                 dataFile='rawData/vegetables/sawiHijau/sawiHijau.csv'
-                multivariate = True
-                modelFile='rawData/vegetables/sawiHijau/sawiHijau.h5'
-                scalerFile = 'rawData/vegetables/sawiHijau/sawiHijau.pkl'
+                multivariate = multivariateget
+                if multivariate == "True":
+                    modelFile='rawData/vegetables/sawiHijau/multivariate/sawiHijau.h5'
+                    scalerFile = 'rawData/vegetables/sawiHijau/multivariate/sawiHijau.pkl'
+                elif multivariate == "False":
+                    modelFile='rawData/vegetables/sawiHijau/univariate/sawiHijau.h5'
+                    scalerFile = 'rawData/vegetables/sawiHijau/univariate/sawiHijau.pkl'
                 title="Choy Sum Field Price Forecast"
                 commodity2 = "Choy Sum"
             
             elif commodity=='tomato':
                 dataFile='rawData/fruits/tomato/tomato.csv'
-                multivariate = True
-                modelFile='rawData/fruits/tomato/tomato.h5'
-                scalerFile = 'rawData/fruits/tomato/tomato.pkl'
+                multivariate = multivariateget
+                if multivariate == "True":
+                    modelFile='rawData/fruits/tomato/multivariate/tomato.h5'
+                    scalerFile = 'rawData/fruits/tomato/multivariate/tomato.pkl'
+                elif multivariate == "False":
+                    modelFile='rawData/fruits/tomato/univariate/tomato.h5'
+                    scalerFile = 'rawData/fruits/tomato/univariate/tomato.pkl'
                 title="Tomato Field Price Forecast"
                 commodity2 = "Tomato"
 
             elif commodity=='chilli':
                 dataFile='rawData/fruits/chilli/chilli.csv'
-                multivariate = True
-                modelFile='rawData/fruits/chilli/chilli.h5'
-                scalerFile = 'rawData/fruits/chilli/chilli.pkl'
+                multivariate = multivariateget
+                if multivariate == "True":
+                    modelFile='rawData/fruits/chilli/multivariate/chilli.h5'
+                    scalerFile = 'rawData/fruits/chilli/multivariate/chilli.pkl'
+                elif multivariate == "False":
+                    modelFile='rawData/fruits/chilli/univariate/chilli.h5'
+                    scalerFile = 'rawData/fruits/chilli/univariate/chilli.pkl'
                 title="Red Chilli Field Price Forecast"
                 commodity2 = "Red Chili"
 
             elif commodity=='chicken':
                 dataFile='rawData/poultry/chicken/chicken.csv'
-                multivariate = False
+                multivariate = "False"
                 modelFile='rawData/poultry/chicken/chicken.h5'
                 scalerFile = 'rawData/poultry/chicken/chicken.pkl'
                 title="Chicken Field Price Forecast"
@@ -310,7 +327,7 @@ def dashboard(request):
 
             elif commodity=='eggA':
                 dataFile='rawData/poultry/eggA/eggA.csv'
-                multivariate = False
+                multivariate = "False"
                 modelFile='rawData/poultry/eggA/eggA.h5'
                 scalerFile = 'rawData/poultry/eggA/eggA.pkl'
                 title="Egg (Grade A) Field Price Forecast"
@@ -318,7 +335,7 @@ def dashboard(request):
 
             elif commodity=='eggB':
                 dataFile='rawData/poultry/eggB/eggB.csv'
-                multivariate = False
+                multivariate = "False"
                 modelFile='rawData/poultry/eggB/eggB.h5'
                 scalerFile = 'rawData/poultry/eggB/eggB.pkl'
                 title="Egg (Grade B) Field Price Forecast"
@@ -326,7 +343,7 @@ def dashboard(request):
 
             elif commodity=='eggC':
                 dataFile='rawData/poultry/eggC/eggC.csv'
-                multivariate = False
+                multivariate = "False"
                 modelFile='rawData/poultry/eggC/eggC.h5'
                 scalerFile = 'rawData/poultry/eggC/eggC.pkl'
                 title="Egg (Grade C) Field Price Forecast"
@@ -335,7 +352,7 @@ def dashboard(request):
             elif commodity=="":
                 dataFile='rawData/poultry/chicken/chicken.csv'
 
-                multivariate = False
+                multivariate = "False"
                 modelFile='rawData/poultry/chicken/chicken.h5'
                 scalerFile = 'rawData/poultry/chicken/chicken.pkl'
                 title="Chicken Field Price Forecast"

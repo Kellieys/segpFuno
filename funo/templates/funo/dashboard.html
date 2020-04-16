@@ -19,22 +19,10 @@
                     </a>
                 </div>
                 <ul class="nav">
-                    <li>
-                        <a class="nav-link" href="{% url 'aboutus' %}">
-                            <i class="nc-icon nc-grid-45"></i>
-                            <p>About Us</p>
-                        </a>
-                    </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'dashboard' %}">
                             <i class="nc-icon nc-chart-bar-32"></i>
                             <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="{% url 'support' %}">
-                            <i class="nc-icon nc-atom"></i>
-                            <p>Support</p>
                         </a>
                     </li>
                     <li>
@@ -43,6 +31,20 @@
                             <p>User Profile</p>
                         </a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'aboutus' %}">
+                            <i class="nc-icon nc-grid-45"></i>
+                            <p>About Us</p>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a class="nav-link" href="{% url 'support' %}">
+                            <i class="nc-icon nc-atom"></i>
+                            <p>Support</p>
+                        </a>
+                    </li>
+                    
                     <li>
                         <a class="nav-link" href="{%url 'subs'%}">
                             <i class="nc-icon nc-email-85"></i>
@@ -126,6 +128,18 @@
                                         </div></select>
                             </div>                        
                         </div>
+
+                         <div class="col-md-3">
+                            <div class="nav-item dropdown">
+                                    <select class="nav-link dropdown-toggle form-control"name="multivariate" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <option class="dropdown-item"  name="option"  value="">--Forecast Model Type--</option>
+                                            <option class="dropdown-item"  name="option"  value="False">Past Price</option>
+                                            <option class="dropdown-item"  name="option"  value="True">Past Price,Temperature,Humidity</option>
+                                        </div></select>
+                            </div>                        
+                        </div>
                             
                                         
                             <div class="col-md-3">
@@ -140,7 +154,8 @@
                             <div class="col-md-12">
                                             <div>
                                             <h2 id = "commodityItem" style="font-weight: 400;"></h2>
-                                            <p><i>Current Price &nbsp</i><strong id = "current_price"></strong> &nbsp<i style="color:red;font-size:10px;">Price change </i><span id="price_change" style="color:red;font-size:10px;font-style:italic;"/></p>
+                                            <div id = "current_price"></div>
+                                            <div id = "nextweek_price"></div>
                                             </div>
                             </div>
                         </div>
@@ -158,7 +173,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                    <h4><i>Table List</i></h4>
+                                    <h4><i>Recent Price and Price Change</i></h4>
                             </div>
                         </div>
 
