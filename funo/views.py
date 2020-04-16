@@ -116,7 +116,7 @@ def data_Predict(request,*args,**kwargs):
             for i in range (0, len(date)):
                 date[i] = date[i].split(' ')[0]
             data={
-                'commodity':commodity,
+                'commodityItem':commodity,
                 'current_price':current_price,
                 'current_date':current_date,
                 'forecast':forecast,
