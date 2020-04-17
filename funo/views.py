@@ -97,6 +97,8 @@ def data_Predict(request,*args,**kwargs):
         commodity = my_thing['commodity']        
         current_price = 0
         current_date = ""
+        univalue = my_thing['univalue']
+        multivalue = my_thing['multivalue']
 
         date=past_data['Date'].iloc[-current:]
         date=pd.to_datetime(date)
@@ -125,7 +127,7 @@ def data_Predict(request,*args,**kwargs):
                 'default': ','.join(past_price)
             }
         else:
-            if multivariate == "True":
+            if multivariate == "True" and not(commodity=="Coconut" or commodity =="Chicken" or commodity =="Egg (Grade A)" or commodity =="Egg (Grade B)" or commodity =="Egg (Grade C)") :
                 date2=past_data["Date"].iloc[-1]
                 date2=pd.Series(pd.date_range(date2, periods=forecast+1, freq='7D'))
                 date2=date2[1:].tolist()   
@@ -229,6 +231,9 @@ def data_Predict(request,*args,**kwargs):
                 'current_price':current_price,
                 'current_date':current_date,
                 'forecast':forecast,
+                'univariateMSE':univalue,
+                'multivariateMSE':multivalue,
+                'multivariate':multivariate,
                 'title':title,
                 'labels':','.join(date),
                 'default': ','.join(past_price)
@@ -253,6 +258,8 @@ def dashboard(request):
     current=260
     title="Chicken Field Price Forecast"
     commodity2 = "Chicken"
+    univalue = 0.09569272
+    multivalue = 0
     
     if request.method=='GET':
             commodity=request.GET.get('commodity')
@@ -262,11 +269,13 @@ def dashboard(request):
 
             if commodity=='coconut':
                 dataFile='rawData/coconut/coconut.csv'
-                multivariate = "False"
+                multivariate = multivariateget
                 modelFile='rawData/coconut/coconut.h5'
                 scalerFile = 'rawData/coconut/coconut.pkl'
                 title="Coconut Field Price Forecast"
                 commodity2 = "Coconut"
+                univalue = 0.00189601
+                multivalue = 0
 
             
             elif commodity=='kangkung':
@@ -280,6 +289,8 @@ def dashboard(request):
                     scalerFile = 'rawData/vegetables/kangkung/univariate/kangkung.pkl'
                 title="Water Spinach Field Price Forecast"
                 commodity2 = "Water Spinach (Kang-kong)"
+                univalue = 0.0215537
+                multivalue = 0.01604664
 
             elif commodity=='sawiHijau':
                 dataFile='rawData/vegetables/sawiHijau/sawiHijau.csv'
@@ -292,6 +303,8 @@ def dashboard(request):
                     scalerFile = 'rawData/vegetables/sawiHijau/univariate/sawiHijau.pkl'
                 title="Choy Sum Field Price Forecast"
                 commodity2 = "Choy Sum"
+                univalue = 0.04081104
+                multivalue = 0.06129039
             
             elif commodity=='tomato':
                 dataFile='rawData/fruits/tomato/tomato.csv'
@@ -304,6 +317,8 @@ def dashboard(request):
                     scalerFile = 'rawData/fruits/tomato/univariate/tomato.pkl'
                 title="Tomato Field Price Forecast"
                 commodity2 = "Tomato"
+                univalue = 0.5489614
+                multivalue = 0.37811854
 
             elif commodity=='chilli':
                 dataFile='rawData/fruits/chilli/chilli.csv'
@@ -316,47 +331,58 @@ def dashboard(request):
                     scalerFile = 'rawData/fruits/chilli/univariate/chilli.pkl'
                 title="Red Chilli Field Price Forecast"
                 commodity2 = "Red Chili"
+                univalue = 0.8140596
+                multivalue = 0.43842274
 
             elif commodity=='chicken':
                 dataFile='rawData/poultry/chicken/chicken.csv'
-                multivariate = "False"
+                multivariate = multivariateget
                 modelFile='rawData/poultry/chicken/chicken.h5'
                 scalerFile = 'rawData/poultry/chicken/chicken.pkl'
                 title="Chicken Field Price Forecast"
                 commodity2 = "Chicken"
+                univalue = 0.09569272
+                multivalue = 0
 
             elif commodity=='eggA':
                 dataFile='rawData/poultry/eggA/eggA.csv'
-                multivariate = "False"
+                multivariate = multivariateget
                 modelFile='rawData/poultry/eggA/eggA.h5'
                 scalerFile = 'rawData/poultry/eggA/eggA.pkl'
                 title="Egg (Grade A) Field Price Forecast"
                 commodity2 = "Egg (Grade A)"
+                univalue = 0.0003747
+                multivalue = 0
 
             elif commodity=='eggB':
                 dataFile='rawData/poultry/eggB/eggB.csv'
-                multivariate = "False"
+                multivariate = multivariateget
                 modelFile='rawData/poultry/eggB/eggB.h5'
                 scalerFile = 'rawData/poultry/eggB/eggB.pkl'
                 title="Egg (Grade B) Field Price Forecast"
                 commodity2 = "Egg (Grade B)"
+                univalue = 0.00034668
+                multivalue = 0
 
             elif commodity=='eggC':
                 dataFile='rawData/poultry/eggC/eggC.csv'
-                multivariate = "False"
+                multivariate = multivariateget
                 modelFile='rawData/poultry/eggC/eggC.h5'
                 scalerFile = 'rawData/poultry/eggC/eggC.pkl'
                 title="Egg (Grade C) Field Price Forecast"
                 commodity2 = "Egg (Grade C)"
+                univalue = 0.00030051
+                multivalue = 0
             
             elif commodity=="":
                 dataFile='rawData/poultry/chicken/chicken.csv'
-
-                multivariate = "False"
+                multivariate = multivariateget
                 modelFile='rawData/poultry/chicken/chicken.h5'
                 scalerFile = 'rawData/poultry/chicken/chicken.pkl'
                 title="Chicken Field Price Forecast"
                 commodity2 = "Chicken"
+                univalue = 0.09569272
+                multivalue = 0
             
 
             if duration=="sixmonth":
@@ -425,7 +451,9 @@ def dashboard(request):
                 'forecast':forecast,
                 'current':current,
                 'title':title,
-                'commodity':commodity2
+                'commodity':commodity2,
+                'univalue':univalue,
+                'multivalue':multivalue
             }
             request.session['data']=data
 
