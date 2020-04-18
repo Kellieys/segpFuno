@@ -457,7 +457,7 @@ def dashboard(request):
             }
             request.session['data']=data
 
-    context = {'page':'Dashboard'}
+    context = {'page':'Forecast Commodities Price Dashboard'}
 
     return render(request, 'funo/dashboard.html',context)
 
@@ -516,6 +516,13 @@ def aboutus(request):
     context = {'page':'About Us'}
 
     return render(request, 'funo/aboutus.html', context)
+
+@login_required(login_url='login')
+def function(request):
+
+    context = {'page':'Welcome to the 14-trials FUNO'}
+
+    return render(request, 'funo/function.html', context)
 
 
 

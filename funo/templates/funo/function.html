@@ -1,0 +1,284 @@
+{% extends 'funo/main.html' %}
+
+{% load static %}
+
+{% block content %}
+    {% include 'funo/graph.html'%}
+    <div class="wrapper">
+       
+        <div class="sidebar" style="background:url({% static 'funo/img/bg-01.jpg' %});">
+            <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+        
+        Tip 2: you can also add an image using data-image tag
+        -->
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="/" class="simple-text">
+                        <img src="{% static 'funo/img/funowhitenew.png' %}" width=180>
+                    </a>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'function' %}">
+                            <i class="nc-icon nc-chart-bar-32"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'user' %}">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'aboutus' %}">
+                            <i class="nc-icon nc-grid-45"></i>
+                            <p>About Us</p>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a class="nav-link" href="{% url 'support' %}">
+                            <i class="nc-icon nc-atom"></i>
+                            <p>Support</p>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a class="nav-link" href="{%url 'subs'%}">
+                            <i class="nc-icon nc-email-85"></i>
+                            <p>Subscription</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <script type="text/javascript" src="//dailymetalprice.com/js/pym.min.js"></script>
+        <div class="main-panel">
+
+         {% include 'funo/navbar.html' with page=page %}
+
+            <div class="content">
+
+    
+                 <!-- TradingView-->
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+    {
+    "symbols": [
+      {
+        "description": "CORN",
+        "proName": "AMEX:CORN"
+      },
+      {
+        "description": "WHEAT",
+        "proName": "AMEX:WEAT"
+      },
+      {
+        "description": "COMMODITY",
+        "proName": "AMEX:TAGS"
+      },
+      {
+        "description": "SOYBEAN",
+        "proName": "AMEX:SOYB"
+      },
+      {
+        "description": "POULTRY",
+        "proName": "EGX:EPCO"
+      }
+    ],
+    "colorTheme": "light",
+    "isTransparent": false,
+    "displayMode": "adaptive",
+    "locale": "en"
+  }
+    </script>
+  </div>
+ 
+</br>
+<div class="content">
+  <div class="container-fluid">
+      <div class="card">
+ <!-- Weather-->
+                <a class="weatherwidget-io" href="https://forecast7.com/en/4d21101d98/malaysia/" data-label_1="MALAYSIA" data-label_2="WEATHER" data-font="Trebuchet MS" data-icons="Climacons Animated" data-theme="pure" >MALAYSIA WEATHER</a>
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+</script>   
+
+
+
+<!--Nav-->
+<div class="container-fluid">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-link active">
+                      <a class="nav" href="{% url 'function' %}">Overview</a>
+                    </li>
+                    <span class="d-inline-success" tabindex="0" data-toggle="tooltip" title="Get your forecast commodities price now ">
+                    <li class="nav-link" >
+                     <a class="nav" href="{% url 'dashboard' %}">Forecast</a>
+                    </li></a></span>
+                  </ul>
+
+                  
+
+
+
+
+                   <!-- TradingView News-->
+                  <div class="content">
+                   <h4>Market Trading News</h4>
+                <div class="row">
+                 
+                  <div class="col-md-4">
+                    <div class="tradingview-widget">
+                      <div class="tradingview-widget-container__widget"></div>
+                       <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                         {
+                          "colorTheme": "light",
+                         "dateRange": "12m",
+    "showChart": true,
+    "locale": "en",
+    "largeChartUrl": "",
+    "isTransparent": false,
+    "width": "400",
+    "height": "660",
+    "plotLineColorGrowing": "rgba(33, 150, 243, 1)",
+    "plotLineColorFalling": "rgba(33, 150, 243, 1)",
+    "gridLineColor": "rgba(240, 243, 250, 1)",
+    "scaleFontColor": "rgba(120, 123, 134, 1)",
+    "belowLineFillColorGrowing": "rgba(33, 150, 243, 0.12)",
+    "belowLineFillColorFalling": "rgba(33, 150, 243, 0.12)",
+    "symbolActiveColor": "rgba(33, 150, 243, 0.12)",
+    "tabs": [
+      {
+        "title": "Commodities",
+        "symbols": [
+          {
+            "s": "CME_MINI:ES1!",
+            "d": "E-Mini S&P"
+          },
+          {
+            "s": "CME:6E1!",
+            "d": "Euro"
+          },
+          {
+            "s": "COMEX:GC1!",
+            "d": "Gold"
+          },
+          {
+            "s": "NYMEX:CL1!",
+            "d": "Crude Oil"
+          },
+          {
+            "s": "NYMEX:NG1!",
+            "d": "Natural Gas"
+          },
+          {
+            "s": "CBOT:ZC1!",
+            "d": "Corn"
+          },
+          {
+            "s": "AMEX:WEAT",
+            "d": "WHEAT"
+          },
+          {
+            "s": "EGX:EPCO",
+            "d": "POULTRY"
+          },
+          {
+            "s": "SET:TVO.R",
+            "d": "VEGETABLE"
+          }
+        ],
+        "originalTitle": "Commodities"
+      },
+      {
+        "title": "Forex",
+        "symbols": [
+          {
+            "s": "FX_IDC:MYRSGD",
+            "d": "MYRSGD"
+          },
+          {
+            "s": "FX_IDC:MYRCNY",
+            "d": "MYRCNY"
+          },
+          {
+            "s": "FX_IDC:MYRUSD",
+            "d": "MYRUSD"
+          },
+          {
+            "s": "FX_IDC:MYRIDR",
+            "d": "MYRIDR"
+          },
+          {
+            "s": "FX_IDC:MYRINR",
+            "d": "MYRINR"
+          }
+        ],
+        "originalTitle": "Forex"
+      }
+    ]
+  }
+    </script>
+  </div>
+  </div>
+  <!-- News-->
+  <div class="col-md-6">
+  <div id="widget-news">
+    <script src="https://softcapital.com/widget/widget.js"></script>
+    <script>
+    createSoftCapitalWidget("News", "widget-news", {"symbol":"weat,tags,corn","view":"grid","title":"Breaking News","showNews":"100","showImg":true,"showTooltip":true,"id":"widget-news","css":{"grid":{"title":"color:red;font-weight:bold","itemTitle":"color:red"}}});</script>
+        </div>
+      </div>
+        <div class="col-md-2">
+          <div class="card" style="padding: 10px;">
+            <h5>Check out the premium FUNO!</h5>
+            <ul class="checkedlist">
+                <li>Unlock the all the commodities</li>
+                <li>Get updated news every 5 minutes</li>
+            </ul>
+          
+            <a href="{%url 'subs'%}"><button type="submit" class="btn btn-info" data-toggle="modal" data-target="#centralModal">Subscribe Now</button></a>
+        </div>
+        <div class="card" style="width:fit-content;">
+          <div id="DMP_6" data-pym-src="//dailymetalprice.com/prices.php?c=cu,pb,ag,au,zn&x=MYR&u=kg"></div>
+
+          <script type="text/javascript" src="//dailymetalprice.com/js/pym.min.js"></script>
+        </div>
+</div>
+</div>
+</div>
+        
+    </div>
+
+            
+          </div>
+              
+          
+        
+        
+
+</div>
+</div>
+</div>
+                  
+                
+                
+          
+
+
+
+
+                
+               {% include 'funo/chatbox.html' %}
+                {% include 'funo/footer.html' %}
+
+            </div>
+
+        </div>
+
+{% endblock %}
