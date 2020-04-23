@@ -280,7 +280,7 @@ def dashboard(request):
                 scalerFile = 'rawData/coconut/coconut.pkl'
                 title="Coconut Field Price Forecast"
                 commodity2 = "Coconut"
-                univalue = 0.00189601
+                univalue = 0.001896
                 multivalue = 0
 
             
@@ -295,8 +295,8 @@ def dashboard(request):
                     scalerFile = 'rawData/vegetables/kangkung/univariate/kangkung.pkl'
                 title="Water Spinach Field Price Forecast"
                 commodity2 = "Water Spinach (Kang-kong)"
-                univalue = 0.0215537
-                multivalue = 0.01604664
+                univalue = 0.021554
+                multivalue = 0.016047
 
             elif commodity=='sawiHijau':
                 dataFile='rawData/vegetables/sawiHijau/sawiHijau.csv'
@@ -309,8 +309,8 @@ def dashboard(request):
                     scalerFile = 'rawData/vegetables/sawiHijau/univariate/sawiHijau.pkl'
                 title="Choy Sum Field Price Forecast"
                 commodity2 = "Choy Sum"
-                univalue = 0.04081104
-                multivalue = 0.06129039
+                univalue = 0.040811
+                multivalue = 0.061290
             
             elif commodity=='tomato':
                 dataFile='rawData/fruits/tomato/tomato.csv'
@@ -323,8 +323,8 @@ def dashboard(request):
                     scalerFile = 'rawData/fruits/tomato/univariate/tomato.pkl'
                 title="Tomato Field Price Forecast"
                 commodity2 = "Tomato"
-                univalue = 0.5489614
-                multivalue = 0.37811854
+                univalue = 0.548961
+                multivalue = 0.378119
 
             elif commodity=='chilli':
                 dataFile='rawData/fruits/chilli/chilli.csv'
@@ -337,8 +337,8 @@ def dashboard(request):
                     scalerFile = 'rawData/fruits/chilli/univariate/chilli.pkl'
                 title="Red Chilli Field Price Forecast"
                 commodity2 = "Red Chili"
-                univalue = 0.8140596
-                multivalue = 0.43842274
+                univalue = 0.814060
+                multivalue = 0.438423
 
             elif commodity=='chicken':
                 dataFile='rawData/poultry/chicken/chicken.csv'
@@ -347,7 +347,7 @@ def dashboard(request):
                 scalerFile = 'rawData/poultry/chicken/chicken.pkl'
                 title="Chicken Field Price Forecast"
                 commodity2 = "Chicken"
-                univalue = 0.09569272
+                univalue = 0.095693
                 multivalue = 0
 
             elif commodity=='eggA':
@@ -357,7 +357,7 @@ def dashboard(request):
                 scalerFile = 'rawData/poultry/eggA/eggA.pkl'
                 title="Egg (Grade A) Field Price Forecast"
                 commodity2 = "Egg (Grade A)"
-                univalue = 0.0003747
+                univalue = 0.000375
                 multivalue = 0
 
             elif commodity=='eggB':
@@ -367,7 +367,7 @@ def dashboard(request):
                 scalerFile = 'rawData/poultry/eggB/eggB.pkl'
                 title="Egg (Grade B) Field Price Forecast"
                 commodity2 = "Egg (Grade B)"
-                univalue = 0.00034668
+                univalue = 0.000347
                 multivalue = 0
 
             elif commodity=='eggC':
@@ -377,7 +377,7 @@ def dashboard(request):
                 scalerFile = 'rawData/poultry/eggC/eggC.pkl'
                 title="Egg (Grade C) Field Price Forecast"
                 commodity2 = "Egg (Grade C)"
-                univalue = 0.00030051
+                univalue = 0.000301
                 multivalue = 0
             
             elif commodity=="":
@@ -387,7 +387,7 @@ def dashboard(request):
                 scalerFile = 'rawData/poultry/chicken/chicken.pkl'
                 title="Chicken Field Price Forecast"
                 commodity2 = "Chicken"
-                univalue = 0.09569272
+                univalue = 0.095693
                 multivalue = 0
             
 
