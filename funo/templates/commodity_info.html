@@ -92,9 +92,9 @@
                     <li class="nav-link">
                       <a class="nav" href="{% url 'function' %}">Overview</a>
                     </li>
-                    <li class="nav-link active">
+                    <li class="nav-link active ">
                       <a class="nav" data-toggle="modal" data-target="#exampleModal">Explore Commodity</a>
-                    </li>
+                      </li>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Agriculture Directory</a>
                       <div class="dropdown-menu">
@@ -131,7 +131,7 @@
                         <div class="row no-gutters">
                           <div class="col-md-4">
                             <figure class="figure">
-                            <img src= "{{ object.img.url }}"  style="max-width:100%;height:auto;">
+                            <img src= "{{ object.img.url }}"  style="padding: 20px; max-width:100%;height:auto;">
                           </figure>
                          
                         </div>
@@ -202,10 +202,10 @@
                           </div>
                         </div>
                           
-         <!--modal commodity-->
+ <!--modal commodity-->
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog" role="document" style="max-width: 600px;">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel"><b>Select commodity:</b></h5>
@@ -216,13 +216,13 @@
                       <div class="modal-body">
                         <!---start-->
                         <div class="row">
-                            {% for object in comms  %}
-                          <div class="col-md-3">
+                            {% for comm in object_list %}
+                          <div class="col-md-4">
                             <div class="card">
                               <div class="card-content row valign-wrapper">
                                 <a href="{{ comm.get_absolute_url }}" style="border: #fff;"><button type="submit"style="border: seagreen;">
                                 <div class="col">
-                                <img src="{{ comm.icon.url }}"><span class="card-title" >{{ object.name }}</span>
+                                <img src="{{ comm.icon.url }}"><span class="card-title" >{{ comm.name }}</span>
                             
                                  <div class="col">
                                 <span class="card-title" value="commodity"></span>
@@ -237,15 +237,14 @@
                        
                          </div>
                          {% endfor %}
-                        </br></br></br>
-                            <a href="{%url 'subs'%}"><button type="submit" class="btn btn-info">Go premium to unlock more commodities!</button></a>
-                            
+                         <div class="col-md-12">
+                            <a href="{%url 'subs'%}"><button type="submit" class="btn btn-info btn-fill btn-block" style="margin-bottom: 0em;">Go premium to unlock more commodities!</button></a>
+                        </div>
                          </div>
-                          
-                  </div>
-                  </div>
-                  </div>
-                  </div>
+                         </div>
+                     </div>
+    </div>
+</div>
                           </div>
                           </div>
                           </div>

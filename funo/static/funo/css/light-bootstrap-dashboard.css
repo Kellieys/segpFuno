@@ -2740,7 +2740,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .card .card-body {
-    padding: 20px 60px 20px 60px;
+    padding: 20px;
 }
 
 .card .card-header {
@@ -3877,7 +3877,7 @@ Copyright (c) 2015 Daniel Eden
 
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 #team {
-    background: #eee !important;
+    background: #ffffff !important;
 }
 
 .btn-primary:hover,
@@ -3902,7 +3902,6 @@ section .section-title {
     text-align: center;
     color: #007b5e;
     margin-bottom: 50px;
-    text-transform: uppercase;
 }
 
 #team .card {
@@ -3987,10 +3986,6 @@ section .section-title {
 
 
 
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-#team {
-    background: #eee !important;
-}
 
 .btn-primary:hover,
 .btn-primary:focus {
@@ -4014,7 +4009,6 @@ section .section-title {
     text-align: center;
     color: #007b5e;
     margin-bottom: 50px;
-    text-transform: uppercase;
 }
 
 #team .card {
@@ -5697,6 +5691,11 @@ License - nucleoapp.com/license/
     background-color: #315950;
     color:white;
     padding: 6.5px 30px 6.5px 30px;
+    margin:auto;
+    width:30%;
+}
+#submitbutton:hover{
+    background-color: #000000;
 }
 .aboutbanner{
     padding:60px;
@@ -5746,6 +5745,7 @@ License - nucleoapp.com/license/
 
   #blog {
     background: #ffffff;
+    padding:10px;
   }
 
   #blog-header,
