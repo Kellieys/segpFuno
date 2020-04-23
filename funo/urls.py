@@ -3,6 +3,12 @@ from django.conf.urls import url
 
 
 from . import views
+from .views import (
+    CommodityDetailView,
+    CommodityListView,
+  
+  
+)
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -14,8 +20,11 @@ urlpatterns = [
     path('user/', views.user, name='user'),
     path('support/', views.support, name='support'),
     path('aboutus/', views.aboutus, name='aboutus'),
+   
+    path('commodity_info/<slug>/', CommodityDetailView.as_view(), name='commodity_info'),
     path('subscription/', views.subscription, name='subs'),
-    path('function/', views.function, name='function'),
+  
+    path('function/', CommodityListView.as_view(), name='function'),
     # url(r'^$', views.Predict, name='blog-home'),
     url(r'^dashboard/model/$',views.data_Predict,name="model"),
 ]

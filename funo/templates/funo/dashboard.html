@@ -3,7 +3,9 @@
 {% load static %}
 
 {% block content %}
+
     {% include 'funo/graph.html'%}
+  
     <div class="wrapper">
        
         <div class="sidebar" style="background:url({% static 'funo/img/bg-01.jpg' %});">
@@ -19,10 +21,16 @@
                     </a>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'function' %}">
+                            <i class="nc-icon nc-tv-2"></i>
+                            <p>Home</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'dashboard' %}">
                             <i class="nc-icon nc-chart-bar-32"></i>
-                            <p>Dashboard</p>
+                            <p>Forecast</p>
                         </a>
                     </li>
                     <li>
@@ -61,70 +69,20 @@
          {% include 'funo/navbar.html' with page=page %}
 
          <div class="content">
-            <!-- TradingView-->
-<div class="tradingview-widget-container">
-<div class="tradingview-widget-container__widget"></div>
-<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-{
-"symbols": [
- {
-   "description": "CORN",
-   "proName": "AMEX:CORN"
- },
- {
-   "description": "WHEAT",
-   "proName": "AMEX:WEAT"
- },
- {
-   "description": "COMMODITY",
-   "proName": "AMEX:TAGS"
- },
- {
-   "description": "SOYBEAN",
-   "proName": "AMEX:SOYB"
- },
- {
-   "description": "POULTRY",
-   "proName": "EGX:EPCO"
- }
-],
-"colorTheme": "light",
-"isTransparent": false,
-"displayMode": "adaptive",
-"locale": "en"
-}
-</script>
-</div>
-<!-- TradingView Widget END -->
+            <a class="weatherwidget-io" href="https://forecast7.com/en/4d21101d98/malaysia/" data-label_1="MALAYSIA" data-label_2="WEATHER" data-font="Trebuchet MS" data-icons="Climacons Animated" data-theme="pure" >MALAYSIA WEATHER</a>
+            <script>
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+            </script>   
 </br>
 <div class="content">
     <div class="container-fluid">
         <div class="card">
             <div class="aboutbanner" style="background:url('/static/funo/img/hope2.jpg'); background-position: bottom right;">
-                <h1 style="color:white; text-shadow: 5px 5px 6px #000000; text-align:center;">Discover the Commodities Price Forecast</h4>
+                <h1 style="color:white; text-shadow: 5px 5px 6px #000000; text-align:center;">Discover the Commodities Prices Forecast</h4>
                 <b><i><h5 style="color:white; font-weight:400; text-shadow: 3px 3px 6px #000000; text-align: center;">Weekly report on commodity price trends and forecasts.
                 </h4></i></b>
             </div>
             <div class="card-body">
-
-                <div class="container-fluid">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-link active">
-                          <a class="nav" href="{% url 'function' %}">Overview</a>
-                        </li>
-                        <span class="d-inline-success" tabindex="0" data-toggle="tooltip" title="Get your forecast commodities price now ">
-                          <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Forecast</a>
-                          <div class="dropdown-menu">
-                          <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Explore by Commodity</a>
-                          <a class="dropdown-item" href="{% url 'dashboard' %}" >Advanced Forecast</a>
-                          </div>
-                          </li>
-                         
-                      </span>
-                      </ul>
-    
-            </br>
                 <div class="container-fluid">
                 <form method='GET'>
                     <div class= "row">
@@ -227,6 +185,7 @@
                             </div>
                         </div>
                     </div> </form>
+                    </div>
 
                    
 
@@ -272,18 +231,34 @@
                             <div class="col-md-12" id ="downloadLink"></div>
                         </div>
                         </div>
-                        </div>
-                        </div>
-                        </div>
+                        
+                        
+                   
+              
 
-                        {% include 'funo/modalcommodity.html' with page=page %}
-            </div>
+  
+  
+  
+  
+  
+                    
+             
+</div>
+                     
+                 
+                 
+           </div>
+           </div>
+           </div>
+           </div>
+                        
+         
              
             
-                </div>
-                </div>
-                </div>
-                </div>
+               
+                
+          
+       
                {% include 'funo/chatbox.html' %}
                 {% include 'funo/footer.html' %}
 

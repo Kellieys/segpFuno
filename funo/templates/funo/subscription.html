@@ -19,12 +19,19 @@
                     </a>
                 </div>
                 <ul class="nav">
-                    <li>
-                        <a class="nav-link" href="{% url 'function' %}">
-                            <i class="nc-icon nc-chart-bar-32"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'function' %}">
+                        <i class="nc-icon nc-tv-2"></i>
+                          <p>Home</p>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="nav-link" href="{% url 'dashboard' %}">
+                          <i class="nc-icon nc-chart-bar-32"></i>
+                          <p>Forecast</p>
+                      </a>
+                  </li>
+                
                     <li>
                         <a class="nav-link" href="{% url 'user' %}">
                             <i class="nc-icon nc-circle-09"></i>
@@ -63,17 +70,19 @@
             <div class="content">
                 
                 <div class="container-fluid">
-                
-                    <div class="row"> 
-                        <div class="col-md-3">
-                        
-                            <div class="card align border-success" style="padding: 20px;">
-                               
-                                <h3 style="font-weight:400;">14-Days free trial</h3>
-                            </br></br>
-                                <h3 style="text-align:center;"><span class="text-md font-weight-bold mr-2">$</span>0</h3>
-                            </br></br></br>
-
+             <div class="row"> 
+                <div class="col-md-3">
+                    <div class="card align" style="padding: 20px;">
+                        <h3 style="font-weight:400;">14 Days free trial</h3>
+                        <p><i</i></p>
+                    </br>
+                        <h3 style="text-align:center;"><span class="text-md font-weight-bold mr-2">$</span>0</h3>
+                        <div class="nav-item dropdown" style="padding:10px; font-size:13px;">
+                        </br>
+                        </div>
+                    </br></br>
+                                
+                          
                                 <ul class="checkedlist">
                                     <li>Predict commodities prices</li>
                                     <li>Graph showing forecasted commodities</li>
@@ -83,15 +92,13 @@
                                     <li>Cancel anytime</li>
                                 </ul>
                                 <button type="submit" class="btn btn-info btn-fill pull-right buttonalign" style="background-color: #000000; border-color: #000000;"><i class="nc-icon nc-check-2"></i>&nbsp Subscribed</button>
-                            </div>
-                            
-                        </div>
+                        </div> </div>
                     
                     
                         <div class="col-md-3">
                     
                             <div class="card align" style="padding: 20px;">
-                                <h3 style="font-weight:400;">Professional</h3>
+                                <h3 style="font-weight:400;">Premium<small><i class="fa fa-thumbs-o-up" style="color:rgb(36, 143, 59);"></i></small></h3>
                                 <p><i>Starting at:</i></p>
                                 <h3 style="text-align:center;"><span class="text-md font-weight-bold mr-2">$</span>65</h3>
                                 <div class="nav-item dropdown" style="padding:10px; font-size:13px;">
@@ -112,28 +119,29 @@
                                     <li>Agriculture News </li>
                                     <li>Market trading news</li>
                                     <li>Predict commodities prices by identifying zones</li>
-                                    <li>Social media integradetion</li>
+                            
                                 </ul>
                                 <button type="submit" class="btn btn-info btn-fill pull-right buttonalign" data-toggle="modal" data-target="#centralModal">Subscribe Now</button>
                             </div>
                         </div> 
+
                         <div class="col-md-3">
-                           
-                        
+                    
                             <div class="card align" style="padding: 20px;">
-                                <h3 style="line-height:0.2; font-weight:400;">Premium<small><i class="fa fa-thumbs-o-up" style="color:rgb(36, 143, 59);"></i></small></h3>
+                                <h3 style="font-weight:400;">Professional</h3>
                                 <p><i>Starting at:</i></p>
                                 <h3 style="text-align:center;"><span class="text-md font-weight-bold mr-2">$</span>100</h3>
                                 <div class="nav-item dropdown" style="padding:10px; font-size:13px;">
                                         <a class="nav-link dropdown-toggle" href="http://example.com" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span class="no-icon">Billing plan</span>
+                                        <span class="no-icon">Billing plan</span>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="font-size:13px;">
                                             <a class="dropdown-item" href="#">Annual plan, paid monthly</a>
                                             <a class="dropdown-item" href="#">Annual plan, prepaid</a>
                                         </div></br>
                                 </div>
-                            
+                                
+                          
                                 <ul class="checkedlist">
                                     <li>Unlimited commodities selection</li>
                                     <li>9 supporting features for forecast accuracy</li>
@@ -143,39 +151,40 @@
                                     <li>24/7 email support</li>
                                     <li>Machinery & IOT integration</li>
                                     <li>Install into your PC/LAPTOP</li>
+                                    <li>Social media integradetion</li>
                                 </ul>
                                 <button type="submit" class="btn btn-info btn-fill pull-right buttonalign" data-toggle="modal" data-target="#centralModal">Subscribe Now</button>
                             </div>
-                        </div>
-
-                         <div class="col-md-3">
-                            
-                            <div class="card align" style="padding: 20px;">
-                                <h3 style="font-weight:500;">Enterprise</h3>
-                            </br>
-                                <h3 style="text-align:center;"><span class="text-md font-weight-bold mr-2"></span>Contact us</h3>
-                            </br></br></br>
-                                <div class="nav-item dropdown" style="padding:10px; font-size:13px;">
-                                 
-                                </div>
-                           
-                                <ul class="checkedlist">
-                                    <li>Dedicated guidance & support</li>
-                                    <li>Dedicated Private Cloud</li>
-                                    <li>Feature Customization</li>
-                                    <li>Dark theme UI</li>
-                                    <li>3rd party integration</li>
-                                    <li>Real-time cloud diagnostics</li>
-                                    <li>Company-Branded User Interface</li>
-            
-                                    
-                                </ul>
-                                <p style="font-size:80%;"><i>Get in touch with our Sales team and let them provide you a quote.</i></p>
+                        </div> 
+                        <div class="col-md-3">
+                        <div class="card align" style="padding: 20px;">
+                            <h3 style="font-weight:400;">Enterprise</h3>
+                            <p><i</i></p>
+                        </br>
+                            <h3 style="text-align:center;"><span class="text-md font-weight-bold mr-2"></span>Contact Us</h3>
+                            <div class="nav-item dropdown" style="padding:10px; font-size:13px;">
+                            </br></br>
+                            </div>
+                        </br>
+                      
+                            <ul class="checkedlist">
+                                <li>Dedicated guidance & support</li>
+                                <li>Dedicated Private Cloud</li>
+                                <li>Feature Customization</li>
+                                <li>Dark theme UI</li>
+                                <li>3rd party integration</li>
+                                <li>Real-time cloud diagnostics</li>
+                                <li>Company-Branded User Interface</li>
+                            </ul>
+                            <p style="font-size:80%;"><i>Get in touch with our Sales team and let them provide you a quote.</i></p>
                                 <div class="text-center">
                                 <a href="{% url 'support' %}"><button type="submit" class="btn btn-info btn-fill btn-block buttonalign"  data-toggle="modal" >Schedule a demo</button>
                                 </a></div></br>
-                            </div>
                         </div>
+                    </div> 
+
+
+                        
                     </div>
                 </div>  
             </br>
