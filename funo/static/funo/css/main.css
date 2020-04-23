@@ -810,7 +810,8 @@ input[type=checkbox]:checked + label {
 /*8///////////////////////*/
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 #team {
-    background: #eee !important;
+    background: #ffffff !important;
+    width: 100%;
 }
 
 .btn-primary:hover,
@@ -835,7 +836,6 @@ section .section-title {
     text-align: center;
     color: #007b5e;
     margin-bottom: 50px;
-    text-transform: uppercase;
 }
 
 #team .card {
@@ -880,6 +880,7 @@ section .section-title {
     -ms-transform: rotateY(0deg);
     z-index: 2;
     margin-bottom: 30px;
+    border: 1px solid #e3e3e3
 }
 
 .backside {
@@ -892,9 +893,7 @@ section .section-title {
     -o-transform: rotateY(-180deg);
     -ms-transform: rotateY(-180deg);
     transform: rotateY(-180deg);
-    -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
-    -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
-    box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+    border: 1px solid #e3e3e3
 }
 
 .frontside,
@@ -1165,7 +1164,7 @@ section .section-title {
 }
 
 .align {
-  min-height:550px;
+  height:650px;
 }
 
 .buttonalign{

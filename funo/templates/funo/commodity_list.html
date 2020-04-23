@@ -107,7 +107,7 @@
                   
   </div>
   <!--news--> 
-<div class="box" style="border-radius: 2cm;">
+<div class="box card" style="margin: 20px;">
     <div class="container">
      	<div class="row">
 			    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -227,7 +227,7 @@
          <!--modal commodity-->
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog" role="document" style="max-width: 600px;">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel"><b>Select commodity:</b></h5>
@@ -239,7 +239,7 @@
                         <!---start-->
                         <div class="row">
                             {% for comm in object_list %}
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <div class="card">
                               <div class="card-content row valign-wrapper">
                                 <a href="{{ comm.get_absolute_url }}" style="border: #fff;"><button type="submit"style="border: seagreen;">
@@ -259,9 +259,9 @@
                        
                          </div>
                          {% endfor %}
-                      
-                            <a href="{%url 'subs'%}"><button type="submit" class="btn btn-info" style="margin-bottom: 0em;">Go premium to unlock more commodities!</button></a>
-                            
+                         <div class="col-md-12">
+                            <a href="{%url 'subs'%}"><button type="submit" class="btn btn-info btn-fill btn-block" style="margin-bottom: 0em;">Go premium to unlock more commodities!</button></a>
+                        </div>
                          </div>
                          </div>
                      </div>
