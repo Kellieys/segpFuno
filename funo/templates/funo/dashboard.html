@@ -61,7 +61,7 @@
          {% include 'funo/navbar.html' with page=page %}
 
          <div class="content">
-            <!-- TradingView Widget BEGIN -->
+            <!-- TradingView-->
 <div class="tradingview-widget-container">
 <div class="tradingview-widget-container__widget"></div>
 <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
@@ -100,22 +100,30 @@
 <div class="content">
     <div class="container-fluid">
         <div class="card">
-            <div class="aboutbanner" style="background:url('/static/funo/img/hope3.jpg'); background-position: bottom right;">
+            <div class="aboutbanner" style="background:url('/static/funo/img/hope2.jpg'); background-position: bottom right;">
                 <h1 style="color:white; text-shadow: 5px 5px 6px #000000; text-align:center;">Discover the Commodities Price Forecast</h4>
                 <b><i><h5 style="color:white; font-weight:400; text-shadow: 3px 3px 6px #000000; text-align: center;">Weekly report on commodity price trends and forecasts.
                 </h4></i></b>
             </div>
             <div class="card-body">
 
-<div class="container-fluid">
-           <ul class="nav nav-tabs" id="myTab" role="tablist">
-               <li class="nav-link">
-                 <a class="nav" href="{% url 'function' %}">Overview</a>
-               </li>
-               <li class="nav-link active">
-                <a class="nav" href="{% url 'dashboard' %}">Forecast</a>
-               </li></a>
-             </ul>
+                <div class="container-fluid">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-link active">
+                          <a class="nav" href="{% url 'function' %}">Overview</a>
+                        </li>
+                        <span class="d-inline-success" tabindex="0" data-toggle="tooltip" title="Get your forecast commodities price now ">
+                          <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Forecast</a>
+                          <div class="dropdown-menu">
+                          <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Explore by Commodity</a>
+                          <a class="dropdown-item" href="{% url 'dashboard' %}" >Advanced Forecast</a>
+                          </div>
+                          </li>
+                         
+                      </span>
+                      </ul>
+    
             </br>
                 <div class="container-fluid">
                 <form method='GET'>
@@ -126,7 +134,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3">
-                            <p style="color:black;font-size: 14px;"><i>Which commodity would you like to forecast today?</i></p>
+                           
                             <div class="nav-item dropdown" >
                                         <select class="nav-link dropdown-toggle form-control" name="commodity" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" >
                                             
@@ -162,7 +170,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <p style="color: #000000;font-size: 14px;"><i>Which period would you like to forecast?</i></p>
+                           
                             <div class="nav-item dropdown">
                                         <select class="nav-link dropdown-toggle form-control"name="duration" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             
@@ -180,11 +188,11 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <p style="color:black;font-size: 14px;"><i>How would you like your data to display?</i></p>
+                  
                             <div class="nav-item dropdown">
                                     <select class="nav-link dropdown-toggle form-control"name="datatype" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">Output Type
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <option class="dropdown-item"  name="option"  value="">--Output Type--</option>
                                             <option class="dropdown-item"  name="option"  value="pastdata">Past Data</option>
                                             <option class="dropdown-item"  name="option"  value="forecast3month">Forecast Data (3 Months)</option>
@@ -198,8 +206,9 @@
                         </div>
 
                          <div class="col-md-3">
-                            <p style="color:black;font-size: 14px;"><i>Please select the model type: </i></p>
-                         </br>
+                        
+                         
+                         
                             <div class="nav-item dropdown">
                                     <select class="nav-link dropdown-toggle form-control"name="multivariate" id="DropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         
@@ -219,6 +228,8 @@
                         </div>
                     </div> </form>
 
+                   
+
                     <div class="container-fluid" style="margin: 20px 0 20px 0;">
                         <div class="row">
                             <div class="col-md-12">
@@ -228,6 +239,7 @@
                                             <div id = "nextweek_price"></div>
                                             </div>
                             </div>
+                           
                         </div>
 
                         <div class="card" style="padding: 40px; height: 100%;">
@@ -239,9 +251,12 @@
                                     <canvas id="myChart" style="display:block; height: 266px; width: 532px;"></canvas>
                                 </div>
                             </div>
+                          
+                         
                         </div>
-                        
+                      
                         <div id = "information"></div>
+                        
 
                         <div class="row">
                             <div class="col-md-12">
@@ -260,8 +275,14 @@
                         </div>
                         </div>
                         </div>
-                  
-                    </div>
+
+                        {% include 'funo/modalcommodity.html' with page=page %}
+            </div>
+             
+            
+                </div>
+                </div>
+                </div>
                 </div>
                {% include 'funo/chatbox.html' %}
                 {% include 'funo/footer.html' %}

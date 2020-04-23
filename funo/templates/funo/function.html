@@ -103,7 +103,7 @@
   <div class="container-fluid">
       <div class="card">
  <!-- Weather-->
-                <a class="weatherwidget-io" href="https://forecast7.com/en/4d21101d98/malaysia/" data-label_1="MALAYSIA" data-label_2="WEATHER" data-font="Trebuchet MS" data-icons="Climacons Animated" data-theme="pure" >MALAYSIA WEATHER</a>
+<a class="weatherwidget-io" href="https://forecast7.com/en/4d21101d98/malaysia/" data-label_1="MALAYSIA" data-label_2="WEATHER" data-font="Trebuchet MS" data-icons="Climacons Animated" data-theme="pure" >MALAYSIA WEATHER</a>
 <script>
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
 </script>   
@@ -117,149 +117,448 @@
                       <a class="nav" href="{% url 'function' %}">Overview</a>
                     </li>
                     <span class="d-inline-success" tabindex="0" data-toggle="tooltip" title="Get your forecast commodities price now ">
-                    <li class="nav-link" >
-                     <a class="nav" href="{% url 'dashboard' %}">Forecast</a>
-                    </li></a></span>
-                  </ul>
-
+                      <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Forecast</a>
+                      <div class="dropdown-menu">
+                      <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Explore by Commodity</a>
+                      <a class="dropdown-item" href="{% url 'dashboard' %}" >Advanced Forecast</a>
+                      </div>
+                      </li>
+                     
+                  </span>
+                </ul>
                   
-
-
-
-
-                   <!-- TradingView News-->
-                  <div class="content">
-                   <h4>Market Trading News</h4>
-                <div class="row">
-                 
-                  <div class="col-md-4">
-                    <div class="tradingview-widget">
-                      <div class="tradingview-widget-container__widget"></div>
-                       <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-                         {
-                          "colorTheme": "light",
-                         "dateRange": "12m",
-    "showChart": true,
-    "locale": "en",
-    "largeChartUrl": "",
-    "isTransparent": false,
-    "width": "400",
-    "height": "660",
-    "plotLineColorGrowing": "rgba(33, 150, 243, 1)",
-    "plotLineColorFalling": "rgba(33, 150, 243, 1)",
-    "gridLineColor": "rgba(240, 243, 250, 1)",
-    "scaleFontColor": "rgba(120, 123, 134, 1)",
-    "belowLineFillColorGrowing": "rgba(33, 150, 243, 0.12)",
-    "belowLineFillColorFalling": "rgba(33, 150, 243, 0.12)",
-    "symbolActiveColor": "rgba(33, 150, 243, 0.12)",
-    "tabs": [
-      {
-        "title": "Commodities",
-        "symbols": [
-          {
-            "s": "CME_MINI:ES1!",
-            "d": "E-Mini S&P"
-          },
-          {
-            "s": "CME:6E1!",
-            "d": "Euro"
-          },
-          {
-            "s": "COMEX:GC1!",
-            "d": "Gold"
-          },
-          {
-            "s": "NYMEX:CL1!",
-            "d": "Crude Oil"
-          },
-          {
-            "s": "NYMEX:NG1!",
-            "d": "Natural Gas"
-          },
-          {
-            "s": "CBOT:ZC1!",
-            "d": "Corn"
-          },
-          {
-            "s": "AMEX:WEAT",
-            "d": "WHEAT"
-          },
-          {
-            "s": "EGX:EPCO",
-            "d": "POULTRY"
-          },
-          {
-            "s": "SET:TVO.R",
-            "d": "VEGETABLE"
-          }
-        ],
-        "originalTitle": "Commodities"
-      },
-      {
-        "title": "Forex",
-        "symbols": [
-          {
-            "s": "FX_IDC:MYRSGD",
-            "d": "MYRSGD"
-          },
-          {
-            "s": "FX_IDC:MYRCNY",
-            "d": "MYRCNY"
-          },
-          {
-            "s": "FX_IDC:MYRUSD",
-            "d": "MYRUSD"
-          },
-          {
-            "s": "FX_IDC:MYRIDR",
-            "d": "MYRIDR"
-          },
-          {
-            "s": "FX_IDC:MYRINR",
-            "d": "MYRINR"
-          }
-        ],
-        "originalTitle": "Forex"
-      }
-    ]
-  }
-    </script>
   </div>
-  </div>
-  <!-- News-->
-  <div class="col-md-6">
-  <div id="widget-news">
-    <script src="https://softcapital.com/widget/widget.js"></script>
-    <script>
-    createSoftCapitalWidget("News", "widget-news", {"symbol":"weat,tags,corn","view":"grid","title":"Breaking News","showNews":"100","showImg":true,"showTooltip":true,"id":"widget-news","css":{"grid":{"title":"color:red;font-weight:bold","itemTitle":"color:red"}}});</script>
-        </div>
-      </div>
-        <div class="col-md-2">
-          <div class="card" style="padding: 10px;">
-            <h5>Check out the premium FUNO!</h5>
-            <ul class="checkedlist">
-                <li>Unlock the all the commodities</li>
-                <li>Get updated news every 5 minutes</li>
-            </ul>
-          
-            <a href="{%url 'subs'%}"><button type="submit" class="btn btn-info" data-toggle="modal" data-target="#centralModal">Subscribe Now</button></a>
-        </div>
-        <div class="card" style="width:fit-content;">
-          <div id="DMP_6" data-pym-src="//dailymetalprice.com/prices.php?c=cu,pb,ag,au,zn&x=MYR&u=kg"></div>
-
-          <script type="text/javascript" src="//dailymetalprice.com/js/pym.min.js"></script>
-        </div>
-</div>
-</div>
-</div>
-        
-    </div>
-
+  <!--news--> 
+  <div class="content">
+                
+    <div class="container-fluid">
+    
+        <div class="row"> 
+            <div class="col-md-3">
             
-          </div>
-              
+                <div class="card align" style="padding: 20px;">
+                   
+                    <script type="text/javascript"> 
+rssfeed_url = new Array(); 
+rssfeed_url[0]="https://agriculture.einnews.com/rss/516LOs5o9SMihyJ4"; rssfeed_url[1]="https://agriculture.einnews.com/rss/_NVnYnIdErTd0iML"; rssfeed_url[2]="https://world.einnews.com/rss/DDtfkzTmeJjTzblA";  
+rssfeed_frame_height="600"; 
+rssfeed_scroll="on"; 
+rssfeed_scroll_step="3"; 
+rssfeed_scroll_bar="on"; 
+rssfeed_target="_top"; 
+rssfeed_font_size="18"; 
+rssfeed_font_face=""; 
+rssfeed_border="off"; 
+rssfeed_css_url=""; 
+rssfeed_title="on"; 
+rssfeed_title_name="Breaking News: Malaysia"; 
+rssfeed_title_bgcolor="#fff"; 
+rssfeed_title_color="#ff0000"; 
+rssfeed_title_bgimage=""; 
+rssfeed_footer="on"; 
+rssfeed_footer_name=""; 
+rssfeed_footer_bgcolor="#fff"; 
+rssfeed_footer_color="#fff"; 
+rssfeed_footer_bgimage=""; 
+rssfeed_item_title_length="50"; 
+rssfeed_item_title_color="#000"; 
+rssfeed_item_bgcolor="#fff"; 
+rssfeed_item_bgimage=""; 
+rssfeed_item_border_bottom="on"; 
+rssfeed_item_source_icon="off"; 
+rssfeed_item_date="off"; 
+rssfeed_item_description="on"; 
+rssfeed_item_description_length="100"; 
+rssfeed_item_description_color="#000"; 
+rssfeed_item_description_link_color="#800080"; 
+rssfeed_item_description_tag="off"; 
+rssfeed_no_items="100"; 
+rssfeed_cache = "06f7a7ce5e2485d17cf1b3b7a2124f9d"; 
+//--> 
+</script> 
+
+
+
+<script type="text/javascript" src="//feed.surfing-waves.com/js/rss-feed.js"></script> 
+<!-- The link below helps keep this service FREE, and helps other people find the SW widget. Please be cool and keep it! Thanks. --> 
+<div style="color:#fff;font-size:10px; text-align:right; width:400px;">powered by <a href="https://surfing-waves.com" rel="noopener" target="_blank" style="color:#fff;">Surfing Waves</a></div> 
+<!-- end sw-rss-feed code -->
+
+                </div>
+                
+                
+            </div>
+            <div class="col-md-3">
+                    
+              <div class="card text-center" style="padding: 1px;">
+                <div class="card-header" style="background-color:	#004d00; color: #fff;"><b>Notice</b></div>
+                <!-- start sw-rss-feed code --> 
+<script type="text/javascript"> 
+
+  rssfeed_url = new Array(); 
+  rssfeed_url[0]="https://www.moa.gov.my/home/-/journal/rss/34911?doAsGroupId=20182&refererPlid=37198&controlPanelCategory=current_site.content&_15_groupId=20182"; rssfeed_url[1]="https://www.moa.gov.my/home/-/journal/rss/34931?doAsGroupId=20182&refererPlid=34170&controlPanelCategory=current_site.content&_15_groupId=20182"; rssfeed_url[2]="https://www.moa.gov.my/home/-/journal/rss/34953?doAsGroupId=20182&refererPlid=37198&controlPanelCategory=current_site.content&_15_groupId=20182";  
+  rssfeed_frame_height="300"; 
+  rssfeed_frame_width="fit-card"; 
+  rssfeed_scroll="on"; 
+  rssfeed_scroll_step="2"; 
+  rssfeed_scroll_bar="off"; 
+  rssfeed_target="_blank"; 
+  rssfeed_font_size="15"; 
+  rssfeed_font_face=""; 
+  rssfeed_border="off"; 
+  rssfeed_css_url=""; 
+  rssfeed_title="on"; 
+  rssfeed_title_name="Kementerian Pertanian dan Industri Makanan Malaysia Announcement:";  
+  rssfeed_title_color="#0073e6"; 
+  rssfeed_title_bgimage=""; 
+  rssfeed_footer="on"; 
+  rssfeed_footer_name=""; 
+  rssfeed_footer_bgcolor="#fff"; 
+  rssfeed_footer_color="#fff"; 
+  rssfeed_footer_bgimage=""; 
+  rssfeed_item_title_length="50"; 
+  rssfeed_item_title_color="#000"; 
+  rssfeed_item_bgcolor="#fff"; 
+  rssfeed_item_bgimage=""; 
+  rssfeed_item_border_bottom="on"; 
+  rssfeed_item_source_icon="off"; 
+  rssfeed_item_date="off"; 
+  rssfeed_item_description="on"; 
+  rssfeed_item_description_length="120"; 
+  rssfeed_item_description_color="#fff"; 
+  rssfeed_item_description_link_color="#fff"; 
+  rssfeed_item_description_tag="off"; 
+  rssfeed_no_items="100"; 
+  rssfeed_cache = "5b79714b93eb1c424068c7aae6aa7ad6"; 
+  //--> 
+  </script> 
+  <script type="text/javascript" src="//feed.surfing-waves.com/js/rss-feed.js"></script> 
+  <!-- The link below helps keep this service FREE, and helps other people find the SW widget. Please be cool and keep it! Thanks. --> 
+  <div style="color:#ccc;font-size:10px; text-align:right; width:230px;"> <a href="https://surfing-waves.com" rel="noopener" target="_blank" style="color:#ccc;"></a></div> 
+  <!-- end sw-rss-feed code -->
+                  
+              </div>
+          </div> 
           
-        
+
+           <!--modal commodity-->
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><b>Select commodity:</b></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                  
+                      <div class="modal-body">
+                        <!---start-->
+                       
+                        <div class="container-fluid">
+                          <div class="row">
+                           
+                            <div class="col-sm-4">
+                              <div class="card border-secondary mb-4">
+                                <div class="card-content row valign-wrapper">
+                                  <a href="{{slug}}" class="btn btn-priamry">
+                                  <div class="col">
+                                  <img src="https://img.icons8.com/color/48/000000/tomato.png">
+                              
+                                   
+                                  <span class="card-title">Tomato</span></a>
+                                
+                                </div>
+                             </div>
+                          
+                            </div>
+                        
+                  
+                            </div>
+
+                            
+                            <div class="col-md-4">
+                              <div class="card border-secondary mb-3">
+                                <div class="card-content row valign-wrapper">
+                                  <a href="{{slug}}" class="btn btn-priamry">
+                                  <div class="col">
+                                  <img src="https://img.icons8.com/color/48/000000/coconut.png">
+                              
+                                  
+                                  <span class="card-title">Coconut</span></a>
+                                
+                                </div>
+                             </div>
+                          
+                            </div>
+                      
+                        
+                  
+                            </div>
+                            <div class="col-md-4">
+                              <div class="card border-secondary mb-3">
+                                <div class="card-content row valign-wrapper">
+                                  <a href="{{slug}}" class="btn btn-priamry">
+                                  <div class="col">
+                                  <img src="https://img.icons8.com/color/48/000000/chili-pepper.png">
+                              
+                                
+                                  <span class="card-title">Chilli</span></a>
+                           
+                                </div>
+                             </div>
+                          
+                            </div>
+                    
+                        
+                  
+                            </div>
+                          
+
+                            <div class="col-md-4">
+                              <div class="card border-secondary mb-3">
+                                <div class="card-content row valign-wrapper">
+                                  <a href="function/{{slug}}" class="btn btn-priamry">
+                                  <div class="col">
+                                  <img src="https://img.icons8.com/color/48/000000/eggs.png">
+                              
+                                 
+                                  <span class="card-title" >Egg(A)</span></a>
+                                </div>
+                             
+                             </div>
+                          
+                            </div>
+                       
+                  
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="card border-secondary mb-3">
+                                <div class="card-content row valign-wrapper">
+                                  <a href="/function/{{slug}}" class="btn btn-priamry">
+                                  <div class="col">
+                                  <img src="https://img.icons8.com/color/48/000000/eggs.png">
+                              
+                                 
+                                  <span class="card-title">Egg(B)</span></a>
+                             
+                                </div>
+                             </div>
+                          
+                            </div>
+                        
+                        
+                  
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="card border-secondary mb-3">
+                                <div class="card-content row valign-wrapper">
+                                  <a href="/function/{{slug}}" class="btn btn-priamry">
+                                  <div class="col">
+                                  <img src="https://img.icons8.com/color/48/000000/eggs.png">
+                         
+                                  <span class="card-title" >Egg(C)</span>
+                            
+                                </div>
+                             </div>
+                          
+                            </div>
+                        
+                        
+                  
+                            </div>
+
+                            <div class="col-md-6">
+                              <div class="card border-secondary mb-3">
+                                <div class="card-content row valign-wrapper">
+                                  <a href="/function/{{slug}}" class="btn btn-priamry">
+                                  <div class="col">
+                                  <img src="https://img.icons8.com/color/48/000000/natural-food.png">
+                              
+                                  
+                                  <span class="card-title">Water Spinach</span></a>
+                              
+                                </div>
+                             </div>
+                          
+                            </div>
+                      
+                            </div>
+
+                            <div class="col-md-6">
+                              <div class="card border-secondary mb-3">
+                                <div class="card-content row valign-wrapper">
+                                  <a href="/function/{{slug}}" class="btn btn-priamry">
+                                  <div class="col">
+                                  <img src="https://img.icons8.com/color/48/000000/natural-food.png">
+                              
+                                  <span class="card-title">Choy Sum</span></a>
+                              
+                                </div>
+                             </div>
+                          
+                            </div>
+                 
+                        
+                  
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="card border-secondary mb-3">
+                                <div class="card-content row valign-wrapper">
+                                  <a href="/function/{{slug}}" class="btn btn-priamry">
+                                  <div class="col">
+                                  <img src="https://img.icons8.com/color/48/000000/chicken.png">
+                              
+                                  <span class="card-title">Chicken</span></a>
+                              
+                                </div>
+                             </div>
+                          
+                            </div>
+                  
+                        
+                  
+                            </div>
+
+                            <div class="col-md-4">
+                              
+                              <div class="card border-secondary mb-3">
+                                
+                                <div class="card-content row valign-wrapper">
+                                  <button type="submit" style="opacity: 0.6;" data-toggle="tooltip" title="Subscribe to unlock" name="commodity" value="wheat" disabled>
+                                  <div class="col">
+                                  <img src="https://img.icons8.com/color/48/000000/wheat.png">
+                              
+                                
+                                  <span class="card-title" value="commodity">Wheat</span>
+                              
+                                </div>
+                             </div>
+                          
+                            </div>
+                        
+                        
+                        
+                  
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="card border-secondary mb-3">
+                                <div class="card-content row valign-wrapper">
+                                  <button type="submit" style="opacity: 0.6;" data-toggle="tooltip" title="Subscribe to unlock" name="commodity" value="corn" disabled>
+                                  <div class="col">
+                                  <img src="https://img.icons8.com/color/48/000000/corn.png">
+                              
+                                 
+                                  <span class="card-title" value="commodity">Maize</span>
+                              
+                                </div>
+                             </div>
+                          
+                            </div>
+                        
+                  
+                            </div>
+                            <div class="col-md-4">
+                              <div class="card border-secondary mb-3">
+                                <div class="card-content row valign-wrapper">
+                                  <button type="submit" style="opacity: 0.6;" data-toggle="tooltip" title="Subscribe to unlock" name="commodity" value="potato" disabled>
+                                  <div class="col">
+                                  <img src="https://img.icons8.com/color/48/000000/potato.png">
+                            
+                                  <span class="card-title" value="commodity">Potato</span>
+                             
+                                </div>
+                             </div>
+                          
+                            </div>
+                        
+                        
+                  
+                            </div>
+                            <div class="col-md-4">
+                              <div class="card border-secondary mb-3">
+                                <div class="card-content row valign-wrapper">
+                                  <button type="submit" style="opacity: 0.6;"data-toggle="tooltip" title="Subscribe to unlock" name="commodity" value="soy" disabled>
+                                  <div class="col">
+                                  <img src="https://img.icons8.com/color/48/000000/soy.png">
+                              
+                                
+                                  <span class="card-title" value="commodity">Soy</span>
+                         
+                                </div>
+                             </div>
+                          
+                            </div>
+                        
+                  
+                            </div>
+
+                            <div class="col-md-4">
+                              <div class="card border-secondary mb-3">
+                                <div class="card-content row valign-wrapper">
+                                  <button type="submit" style="opacity: 0.6;" data-toggle="tooltip" title="Subscribe to unlock" name="commodity" value="citrus" disabled>
+                                  <div class="col">
+                                  <img src="https://img.icons8.com/color/48/000000/citrus.png">
+                        
+                                  <span class="card-title" value="commodity">Orange</span>
+                            
+                                </div>
+                             </div>
+                          
+                            </div>
+              
+                        
+                  
+                            </div>
+                            <div class="col-sm-4">
+                            <div class="card border-secondary mb-3">
+                              <div class="card-content row valign-wrapper">
+                                <button type="submit" style="opacity: 0.6;" name="commodity" data-toggle="tooltip" title="Subscribe to unlock" value="more" disabled>
+                                <div class="col">
+                                <img src="https://img.icons8.com/color/48/000000/more.png">
+                            
+                         
+                                <span class="card-title" value="commodity">More</span>
+                           
+                              </div>
+                           </div>
+                        
+                          </div>
+                     
+                     
+                </div>
+                          </div>
+
+
+                          </div>
+                        </div>
+                        
+
+
+
+
+
+
+                      
+                      </div>
+                   
+                    
+                    </div>
+                  </div>
+              
+                </div>
+          </div>
+           
+          
+        </div>
+        </div>
+        </div>
         
 
 </div>
