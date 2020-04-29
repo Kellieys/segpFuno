@@ -29,7 +29,6 @@ from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.shortcuts import render
 import requests
-from bs4 import BeautifulSoup
 
 
 
