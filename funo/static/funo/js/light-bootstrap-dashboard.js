@@ -57,6 +57,19 @@ $(document).ready(function() {
     });
 });
 
+//searchdirectory
+$(document).ready(function(){
+    $("#tableSearch").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+
+
+  
+
 // activate collapse right menu when the windows is resized
 $(window).resize(function() {
     if ($(window).width() <= 991) {

@@ -20,10 +20,12 @@ urlpatterns = [
     path('user/', views.user, name='user'),
     path('support/', views.support, name='support'),
     path('aboutus/', views.aboutus, name='aboutus'),
-   
+    path('farmer/', views.farmer, name='farmer'),
+    path('supplier/', views.supplier, name='supplier'),
+    path('news/', views.news, name='news'),
+    path('commodity_info/', views.commodity_info, name='commodity_info'),
     path('commodity_info/<slug>/', CommodityDetailView.as_view(), name='commodity_info'),
     path('subscription/', views.subscription, name='subs'),
-  
     path('function/', CommodityListView.as_view(), name='function'),
     # url(r'^$', views.Predict, name='blog-home'),
     url(r'^dashboard/model/$',views.data_Predict,name="model"),

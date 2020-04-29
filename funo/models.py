@@ -6,18 +6,6 @@ from django.shortcuts import reverse
 import string
 import random
 
-CATEGORY_CHOICES = (
-    ('C','Chilli'),
-    ('EA','Egg A'),
-    ('EB','Egg B'),
-    ('EC','Egg C'),
-    ('WS','Water Spinach'),
-    ('C', 'Chicken'),
-    ('CS', 'Choy Sum'),
-    ('CO','Coconut'),
-    ('TO','Tomato')
-)
-# Create your models here.
 
 class Support(models.Model):
     name = models.CharField(max_length=200, null=True)
@@ -63,6 +51,32 @@ class Commodity(models.Model):
             'slug':self.slug
         })
 
+class Farmer(models.Model):
+    no = models.CharField(max_length=200, null=True)
+    name = models.CharField(max_length=200, null=True)
+    email = models.CharField(max_length=200, null=True)
+    phone = models.CharField(max_length=200, null=True)
+    commodity = models.CharField(max_length=200, null=True)
+    commoditytype = models.CharField(max_length=200, null=True)
+    state = models.CharField(max_length=200, null=True)
+
+
+    def __str__(self):
+        return self.name
+
+
+class Farmer(models.Model):
+    no = models.CharField(max_length=200, null=True)
+    name = models.CharField(max_length=200, null=True)
+    email = models.CharField(max_length=200, null=True)
+    phone = models.CharField(max_length=200, null=True)
+    commodity = models.CharField(max_length=200, null=True)
+    commoditytype = models.CharField(max_length=200, null=True)
+    state = models.CharField(max_length=200, null=True)
+
+
+    def __str__(self):
+        return self.name
 
 
    

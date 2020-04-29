@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import *
 from .models import Commodity
+from .models import Farmer
 from .forms import CreateUserForm, SupportForm,UpdateProfileForm
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
@@ -26,6 +27,9 @@ from tensorflow.keras import backend as K
 from pickle import load
 from django.views.generic import DetailView
 from django.views.generic import ListView
+from django.shortcuts import render
+import requests
+from bs4 import BeautifulSoup
 
 
 
@@ -508,6 +512,22 @@ def commodity_list(request):
 
 
 @login_required(login_url='login')
+def farmer(request):
+
+    direc = Farmer.objects.all()
+    comms = Commodity.objects.all()
+
+    return render(request, 'funo/farmer.html', {'direc': direc, 'comms': comms}) 
+
+
+@login_required(login_url='login')
+def supplier(request):
+    comms = Commodity.objects.all()
+
+    return render(request, 'funo/supplier.html', {'comms': comms }) 
+
+
+@login_required(login_url='login')
 def user(request):
     if request.method == 'POST':
             print("HEHE")
@@ -554,222 +574,15 @@ def support(request):
 
 
 
+
+
 @login_required(login_url='login')
-def brief(request):
-    dataFile='rawData/poultry/chicken/chicken.csv'
-    featuresFile = 'rawData/features.csv'
-    multivariate = "False"
-    modelFile='rawData/poultry/chicken/chicken.h5'
-    scalerFile = 'rawData/poultry/chicken/chicken.pkl'
-    durationVar=0
-    forecast=52
-    current=260
-    title="Chicken Field Price Forecast"
-    commodity2 = "Chicken"
-    univalue = 0.09569272
-    multivalue = 0
-    
-    if request.method=='GET':
-            commodity=request.GET.get('commodity')
-            duration=request.GET.get('duration')
-            datatype=request.GET.get('datatype')
-            multivariateget=request.GET.get('multivariate')
+def news(request): 
+   
+    comms = Commodity.objects.all()
+       
 
-            if commodity=='coconut':
-                dataFile='rawData/coconut/coconut.csv'
-                multivariate = multivariateget
-                modelFile='rawData/coconut/coconut.h5'
-                scalerFile = 'rawData/coconut/coconut.pkl'
-                title="Coconut Field Price Forecast"
-                commodity2 = "Coconut"
-                univalue = 0.00189601
-                multivalue = 0
-
-            
-            elif commodity=='kangkung':
-                dataFile='rawData/vegetables/kangkung/kangkung.csv'
-                multivariate = multivariateget
-                if multivariate == "True":
-                    modelFile='rawData/vegetables/kangkung/multivariate/kangkung.h5'
-                    scalerFile = 'rawData/vegetables/kangkung/multivariate/kangkung.pkl'
-                elif multivariate == "False":
-                    modelFile='rawData/vegetables/kangkung/univariate/kangkung.h5'
-                    scalerFile = 'rawData/vegetables/kangkung/univariate/kangkung.pkl'
-                title="Water Spinach Field Price Forecast"
-                commodity2 = "Water Spinach (Kang-kong)"
-                univalue = 0.0215537
-                multivalue = 0.01604664
-
-            elif commodity=='sawiHijau':
-                dataFile='rawData/vegetables/sawiHijau/sawiHijau.csv'
-                multivariate = multivariateget
-                if multivariate == "True":
-                    modelFile='rawData/vegetables/sawiHijau/multivariate/sawiHijau.h5'
-                    scalerFile = 'rawData/vegetables/sawiHijau/multivariate/sawiHijau.pkl'
-                elif multivariate == "False":
-                    modelFile='rawData/vegetables/sawiHijau/univariate/sawiHijau.h5'
-                    scalerFile = 'rawData/vegetables/sawiHijau/univariate/sawiHijau.pkl'
-                title="Choy Sum Field Price Forecast"
-                commodity2 = "Choy Sum"
-                univalue = 0.04081104
-                multivalue = 0.06129039
-            
-            elif commodity=='tomato':
-                dataFile='rawData/fruits/tomato/tomato.csv'
-                multivariate = multivariateget
-                if multivariate == "True":
-                    modelFile='rawData/fruits/tomato/multivariate/tomato.h5'
-                    scalerFile = 'rawData/fruits/tomato/multivariate/tomato.pkl'
-                elif multivariate == "False":
-                    modelFile='rawData/fruits/tomato/univariate/tomato.h5'
-                    scalerFile = 'rawData/fruits/tomato/univariate/tomato.pkl'
-                title="Tomato Field Price Forecast"
-                commodity2 = "Tomato"
-                univalue = 0.5489614
-                multivalue = 0.37811854
-
-            elif commodity=='chilli':
-                dataFile='rawData/fruits/chilli/chilli.csv'
-                multivariate = multivariateget
-                if multivariate == "True":
-                    modelFile='rawData/fruits/chilli/multivariate/chilli.h5'
-                    scalerFile = 'rawData/fruits/chilli/multivariate/chilli.pkl'
-                elif multivariate == "False":
-                    modelFile='rawData/fruits/chilli/univariate/chilli.h5'
-                    scalerFile = 'rawData/fruits/chilli/univariate/chilli.pkl'
-                title="Red Chilli Field Price Forecast"
-                commodity2 = "Red Chili"
-                univalue = 0.8140596
-                multivalue = 0.43842274
-
-            elif commodity=='chicken':
-                dataFile='rawData/poultry/chicken/chicken.csv'
-                multivariate = multivariateget
-                modelFile='rawData/poultry/chicken/chicken.h5'
-                scalerFile = 'rawData/poultry/chicken/chicken.pkl'
-                title="Chicken Field Price Forecast"
-                commodity2 = "Chicken"
-                univalue = 0.09569272
-                multivalue = 0
-
-            elif commodity=='eggA':
-                dataFile='rawData/poultry/eggA/eggA.csv'
-                multivariate = multivariateget
-                modelFile='rawData/poultry/eggA/eggA.h5'
-                scalerFile = 'rawData/poultry/eggA/eggA.pkl'
-                title="Egg (Grade A) Field Price Forecast"
-                commodity2 = "Egg (Grade A)"
-                univalue = 0.0003747
-                multivalue = 0
-
-            elif commodity=='eggB':
-                dataFile='rawData/poultry/eggB/eggB.csv'
-                multivariate = multivariateget
-                modelFile='rawData/poultry/eggB/eggB.h5'
-                scalerFile = 'rawData/poultry/eggB/eggB.pkl'
-                title="Egg (Grade B) Field Price Forecast"
-                commodity2 = "Egg (Grade B)"
-                univalue = 0.00034668
-                multivalue = 0
-
-            elif commodity=='eggC':
-                dataFile='rawData/poultry/eggC/eggC.csv'
-                multivariate = multivariateget
-                modelFile='rawData/poultry/eggC/eggC.h5'
-                scalerFile = 'rawData/poultry/eggC/eggC.pkl'
-                title="Egg (Grade C) Field Price Forecast"
-                commodity2 = "Egg (Grade C)"
-                univalue = 0.00030051
-                multivalue = 0
-            
-            elif commodity=="":
-                dataFile='rawData/poultry/chicken/chicken.csv'
-                multivariate = multivariateget
-                modelFile='rawData/poultry/chicken/chicken.h5'
-                scalerFile = 'rawData/poultry/chicken/chicken.pkl'
-                title="Chicken Field Price Forecast"
-                commodity2 = "Chicken"
-                univalue = 0.09569272
-                multivalue = 0
-            
-
-            if duration=="sixmonth":
-                durationVar=26
-            
-            elif duration=="oneyear":
-                durationVar=53
-            
-            elif duration=="fiveyear":
-                durationVar=260
-
-            elif duration=="threeyear": 
-                durationVar=156
-
-            elif duration=="tenyear":
-                durationVar=520
-
-            elif duration=="":
-                durationVar=260
-            
-            if datatype=="pastdata":
-                forecast=0
-                current=durationVar-forecast
-
-            elif datatype=="forecast3month":
-                if durationVar<13:
-                    forecast=13
-                    current=forecast
-                else:
-                    forecast=13
-                    current=durationVar-forecast
-
-            elif datatype=="forecast6month":
-                if durationVar==26:
-                    forecast=26
-                    current=1
-                else:
-                    forecast=26
-                    current=durationVar-forecast
-
-            elif datatype=="forecast1year":                    
-                if durationVar<52:
-                    forecast=52
-                    current=1
-                else:
-                    forecast=52
-                    current=durationVar-forecast
-
-            elif datatype=="":
-                if durationVar<52:
-                    forecast=52
-                    current=forecast
-                else:
-                    forecast=52
-                    current=durationVar-forecast
-             
-            
-            print(dataFile)
-            data={
-                'dataFile':dataFile,
-                'featuresFile':featuresFile,
-                'multivariate':multivariate,
-                'modelFile':modelFile,
-                'scalerFile':scalerFile,
-                'duration':durationVar,
-                'forecast':forecast,
-                'current':current,
-                'title':title,
-                'commodity':commodity2,
-                'univalue':univalue,
-                'multivalue':multivalue
-            }
-            request.session['data']=data
-
-    context = {'page':'About Us'}
-
-    return render(request, 'funo/brief.html', context)
-
-
+    return render(request, 'funo/news.html',{'comms':comms}) 
 
 @login_required(login_url='login')
 def aboutus(request):
@@ -801,17 +614,16 @@ def function(request):
 
     return render(request, 'funo/function.html', context)
 
-
-
 login_required(login_url='login')
-def commodityinfo(request):
+def commodity_info(request):
 
-    context = {
+    comms = Commodity.objects.all()
 
-        'comms': Commodity.objects.all()
-    }
+    return render(request, 'funo/commodity_info/<slug>.html', {'comms': comms}) 
 
-    return render(request, 'funo/commodity_info.html', context)
+
+
+
 
 class CommodityListView(ListView):
     model = Commodity
@@ -820,6 +632,7 @@ class CommodityListView(ListView):
 class  CommodityDetailView(DetailView):
     model = Commodity
     template_name = "commodity_info.html"
+
 
 
 
