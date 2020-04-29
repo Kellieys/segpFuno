@@ -20,11 +20,14 @@
 
 <body>
 <div class="row">
-  <div class="col-md-4" style="background-image: url('/static/funo/img/bg-01.jpg'); height:auto;">
-    <a href="{% url 'dashboard' %}"><img src="{% static 'funo/img/funowhite.png' %}" style="width:250px; padding:50px;"></a>
-  </div>
 
-  <div class="col-md-8" style="background-color: #F8F8F8;">
+  <div class="col-md-12" style="background-color: #F8F8F8;">
+    <div class ="row">
+      <div class="col-md-12">
+      <a href="{% url 'home' %}"><img src="{% static 'funo/img/green_logo.png' %}" style="width:250px; padding:70px;"></a>
+      <a href="{% url 'home' %}"><h5 style="float:right; padding:90px;"> < back to home</h5></a>
+      </div>s
+    </div>
     <div class="form">
       <h2 style="text-align: center; font-weight: 900;">Log In</h2>
 

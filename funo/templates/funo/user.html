@@ -15,32 +15,26 @@
             <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="/" class="simple-text">
-                        <img src="{% static 'funo/img/funowhite.png' %}" width=80>
+                        <img src="{% static 'funo/img/white_logo.png' %}" width=100>
                     </a>
                 </div>
                 <ul class="nav">
-                    <li>
-                        <a class="nav-link" href="{% url 'dashboard' %}">
-                            <i class="nc-icon nc-chart-pie-35"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'function' %}">
+                        <i class="nc-icon nc-tv-2"></i>
+                          <p>Home</p>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="nav-link" href="{% url 'dashboard' %}">
+                          <i class="nc-icon nc-chart-bar-32"></i>
+                          <p>Forecast</p>
+                      </a>
+                  </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'user' %}">
                             <i class="nc-icon nc-circle-09"></i>
                             <p>User Profile</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="{% url 'support' %}">
-                            <i class="nc-icon nc-atom"></i>
-                            <p>Support</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="{% url 'weather' %}">
-                            <i class="nc-icon nc-explore-2"></i>
-                            <p>Weather Forecast</p>
                         </a>
                     </li>
                     <li>
@@ -49,6 +43,14 @@
                             <p>About Us</p>
                         </a>
                     </li>
+                    
+                    <li>
+                        <a class="nav-link" href="{% url 'support' %}">
+                            <i class="nc-icon nc-atom"></i>
+                            <p>Support</p>
+                        </a>
+                    </li>
+                    
                     <li>
                         <a class="nav-link" href="{%url 'subs'%}">
                             <i class="nc-icon nc-email-85"></i>
@@ -157,18 +159,17 @@
                                 <div class="card-body">
                                     <div class="author">
                                         <a href="#">
-                                            <img class="avatar border-gray" src="{% static 'funo/img/faces/howeseng.jpg' %}" alt="...">
+                                            <img class="avatar border-gray" src="{% static 'funo/img/faces/defaultuser.jpg' %}" alt="...">
                                             <h5 class="title">{{name}}</h5>
                                         </a>
                                         <p class="description">
-                                            Founder of FUNO
+                                            New User
                                         </p>
                                     </div>
                                     <p class="description text-center">
                                     
-                                        "If your dreams don't scare you. 
-                                       
-                                        <br> They're not big enough"
+                                       - Current Subscription Plan -
+                                        <br>14 Days Free Trial
                                     </p>
                                 </div>
                                 <hr>
