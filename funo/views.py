@@ -621,9 +621,6 @@ def commodity_info(request):
     return render(request, 'funo/commodity_info/<slug>.html', {'comms': comms}) 
 
 
-
-
-
 class CommodityListView(ListView):
     model = Commodity
     template_name = "function.html"
@@ -632,7 +629,10 @@ class  CommodityDetailView(DetailView):
     model = Commodity
     template_name = "commodity_info.html"
 
-
+    def get_context_data(self, **kwargs):
+        context = super(CommodityDetailView, self).get_context_data(**kwargs)
+        context['comms'] = Commodity.objects.all()
+        return context  
 
 
 @login_required(login_url='login')
