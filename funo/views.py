@@ -627,7 +627,7 @@ class CommodityListView(ListView):
 
 class  CommodityDetailView(DetailView):
     model = Commodity
-    template_name = "commodity_info.html"
+    template_name = "funo/commodity_info.html"
 
     def get_context_data(self, **kwargs):
         context = super(CommodityDetailView, self).get_context_data(**kwargs)
