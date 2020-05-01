@@ -15,7 +15,7 @@
             <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="/" class="simple-text">
-                        <img src="{% static 'funo/img/white_logo.png' %}" width=100>
+                        <img src="{% static 'funo/img/white_logo.png' %}" style="width:90px;">
                     </a>
                 </div>
                 <ul class="nav">
@@ -50,7 +50,12 @@
                             <p>Support</p>
                         </a>
                     </li>
-                    
+                    <li>
+                        <a class="nav-link" href="{% url 'usermanual' %}">
+                            <i class="nc-icon nc-bulb-63"></i>
+                            <p>User Manual</p>
+                        </a>
+                    </li>
                     <li>
                         <a class="nav-link" href="{%url 'subs'%}">
                             <i class="nc-icon nc-email-85"></i>

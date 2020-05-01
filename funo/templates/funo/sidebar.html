@@ -9,8 +9,7 @@ Tip 2: you can also add an image using data-image tag
     <div class="sidebar-wrapper">
         <div class="logo">
             <a href="/" class="simple-text">
-                <img src="{% static 'funo/img/funowhite.png' %}" width=80>
-            </a>
+                <img src="{% static 'funo/img/white_logo.png' %}" style="width:90px;">
         </div>
         <ul class="nav">
             <li class="nav-item">
@@ -42,6 +41,12 @@ Tip 2: you can also add an image using data-image tag
                 <a class="nav-link" href="{% url 'aboutus' %}">
                     <i class="nc-icon nc-grid-45"></i>
                     <p>About Us</p>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="{% url 'usermanual' %}">
+                    <i class="nc-icon nc-bulb-63"></i>
+                    <p>User Manual</p>
                 </a>
             </li>
             <li>

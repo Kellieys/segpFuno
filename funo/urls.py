@@ -27,6 +27,7 @@ urlpatterns = [
     path('commodity_info/<slug>/', CommodityDetailView.as_view(), name='commodity_info'),
     path('subscription/', views.subscription, name='subs'),
     path('function/', CommodityListView.as_view(), name='function'),
+    path('usermanual/',views.usermanual, name='usermanual'),
     # url(r'^$', views.Predict, name='blog-home'),
     url(r'^dashboard/model/$',views.data_Predict,name="model"),
 ]
