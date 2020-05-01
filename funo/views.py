@@ -642,6 +642,14 @@ def subscription(request):
 
     return render(request, 'funo/subscription.html', context)
 
+@login_required(login_url='login')
+def usermanual(request):
+
+    context = {'page':'User Instruction Manual'}
+
+    return render(request, 'funo/usermanual.html', context)
+
+
 def home(request):
 
     context = {'page':'Home'}
